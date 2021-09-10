@@ -5,7 +5,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment(layoutId: Int): Fragment(layoutId) {
     protected lateinit var progressBar: ProgressBar
 
     lateinit var viewModelFactory: ViewModelProvider.Factory
