@@ -8,34 +8,25 @@
     android:layout_marginEnd="8dp"
     tools:background="@color/baseBlack">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/item_movie_cv_poster"
+    <View
+        android:id="@+id/item_movie_placeholder_poster"
         android:layout_width="@dimen/movie_card_width"
         android:layout_height="@dimen/movie_card_height"
-        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/item_movie_iv_poster"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/purple_500"
-            tools:ignore="ContentDescription" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_item_placeholder"/>
 
     <TextView
-        android:id="@+id/item_movie_tv_title"
+        android:id="@+id/item_movie_placeholder_tv_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-light"
-        android:textColor="@color/baseWhite"
+        android:layout_marginEnd="30dp"
         android:textSize="16sp"
+        android:background="@drawable/bg_item_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_movie_cv_poster"
-        tools:text="Movie title"/>
+        app:layout_constraintTop_toBottomOf="@id/item_movie_placeholder_poster"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
