@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
 import com.axkov.moviepick.app.model.ItemPlaceholder
-import com.axkov.moviepick.app.model.ListItem
-import com.axkov.moviepick.app.model.MovieCategory
+import com.axkov.moviepick.app.model.MovieCategoryItem
 import com.axkov.moviepick.app.model.MovieItem
 import com.axkov.moviepick.app.ui.base.BaseFragment
 import com.axkov.moviepick.app.ui.main.adapters.MovieCategoryAdapter
@@ -22,14 +21,14 @@ class MainScreenFragment: BaseFragment(R.layout.fragment_main_screen) {
         super.onViewCreated(view, savedInstanceState)
 
         movieCategoryAdapter = MovieCategoryAdapter()
-        movieCategoryAdapter.data = getCategories()
+        movieCategoryAdapter.submitList(getCategories())
         val recyclerView: RecyclerView = view.findViewById(R.id.fragment_main_screen_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = movieCategoryAdapter
     }
 
-    private fun getCategories(): List<MovieCategory> = listOf(
-        MovieCategory("Category 1", listOf(
+    private fun getCategories(): List<MovieCategoryItem> = listOf(
+        MovieCategoryItem("Category 1", listOf(
             MovieItem(1, "Movie 1", null),
             MovieItem(2, "Movie 2", null),
             MovieItem(3, "Movie 3", null),
@@ -37,13 +36,13 @@ class MainScreenFragment: BaseFragment(R.layout.fragment_main_screen) {
             MovieItem(5, "Movie 5", null),
 
         )),
-        MovieCategory("Category 2", listOf(
+        MovieCategoryItem("Category 2", listOf(
             MovieItem(1, "Movie 1", null),
             MovieItem(2, "Movie 2", null),
             ItemPlaceholder,
             ItemPlaceholder
         )),
-        MovieCategory("Category 3", listOf(
+        MovieCategoryItem("Category 3", listOf(
             ItemPlaceholder,
             ItemPlaceholder,
             MovieItem(3, "Movie 3", null),

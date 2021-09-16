@@ -1,7 +1,7 @@
 package com.axkov.moviepick.app.model
 
 data class MovieItem(
-    val id: Int,
+    override val itemId: Long,
     val title: String,
     val thumbnail: String?
 ): ListItem

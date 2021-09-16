@@ -1,3 +1,5 @@
 package com.axkov.moviepick.app.model
 
-object ItemPlaceholder: ListItem
+object ItemPlaceholder: ListItem {
+    override val itemId: Long = 0L
+}

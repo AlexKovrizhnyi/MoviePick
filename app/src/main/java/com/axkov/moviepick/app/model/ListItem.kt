@@ -1,3 +1,5 @@
 package com.axkov.moviepick.app.model
 
-interface ListItem
+interface ListItem {
+    val itemId: Long
+}

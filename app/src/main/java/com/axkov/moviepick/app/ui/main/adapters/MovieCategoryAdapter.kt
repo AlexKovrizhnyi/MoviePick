@@ -5,28 +5,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
-import com.axkov.moviepick.app.model.MovieCategory
+import com.axkov.moviepick.app.model.ListItem
+import com.axkov.moviepick.app.model.MovieCategoryItem
 
-class MovieCategoryAdapter: RecyclerView.Adapter<MovieCategoryAdapter.MovieCategoryViewHolder>() {
+class MovieCategoryAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return MovieCategoryViewHolder.from(parent)
+    }
 
-    var data = listOf<MovieCategory>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is MovieCategoryViewHolder -> {
+                val categoryItem = getItem(position) as MovieCategoryItem
+                holder.bind(categoryItem)
+            }
         }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCategoryViewHolder {
-       return MovieCategoryViewHolder.from(parent)
-    }
-
-    override fun onBindViewHolder(holder: MovieCategoryViewHolder, position: Int) {
-        holder.bind(data[position])
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
     }
 
     class MovieCategoryViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -44,9 +40,9 @@ class MovieCategoryAdapter: RecyclerView.Adapter<MovieCategoryAdapter.MovieCateg
             categoryRecyclerView.adapter = movieAdapter
         }
 
-        fun bind(item: MovieCategory) {
+        fun bind(item: MovieCategoryItem) {
             categoryTitle.text = item.title
-            movieAdapter.data = item.movieList
+            movieAdapter.submitList(item.movieList)
         }
 
         companion object {
