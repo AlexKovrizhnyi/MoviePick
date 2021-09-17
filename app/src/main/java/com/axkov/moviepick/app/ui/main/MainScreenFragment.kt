@@ -2,56 +2,30 @@ package com.axkov.moviepick.app.ui.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
-import com.axkov.moviepick.app.models.ItemPlaceholder
-import com.axkov.moviepick.app.models.MovieCategoryItem
-import com.axkov.moviepick.app.models.MovieItem
 import com.axkov.moviepick.app.ui.base.BaseFragment
 import com.axkov.moviepick.app.ui.main.adapters.MovieCategoryAdapter
 
-class MainScreenFragment: BaseFragment(R.layout.fragment_main_screen) {
-    private lateinit var viewModel: ViewModel
+class MainScreenFragment : BaseFragment(R.layout.fragment_main_screen) {
+    private val viewModel by viewModels<MainScreenViewModel>()
     private lateinit var movieCategoryAdapter: MovieCategoryAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         movieCategoryAdapter = MovieCategoryAdapter()
-        movieCategoryAdapter.submitList(getCategories())
+        movieCategoryAdapter.submitList(viewModel.getLoaders())
+
         val recyclerView: RecyclerView = view.findViewById(R.id.fragment_main_screen_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = movieCategoryAdapter
-    }
 
-    private fun getCategories(): List<MovieCategoryItem> = listOf(
-        MovieCategoryItem("Category 1", listOf(
-            MovieItem(1, "Movie 1", null),
-            MovieItem(2, "Movie 2", null),
-            MovieItem(3, "Movie 3", null),
-            MovieItem(4, "Movie 4", null),
-            MovieItem(5, "Movie 5", null),
-
-        )),
-        MovieCategoryItem("Category 2", listOf(
-            MovieItem(1, "Movie 1", null),
-            MovieItem(2, "Movie 2", null),
-            ItemPlaceholder,
-            ItemPlaceholder
-        )),
-        MovieCategoryItem("Category 3", listOf(
-            ItemPlaceholder,
-            ItemPlaceholder,
-            MovieItem(3, "Movie 3", null),
-            ItemPlaceholder
-        ))
-    )
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainScreenViewModel::class.java)
+        viewModel.getMovies().observe(viewLifecycleOwner, {
+            movieCategoryAdapter.submitList(it)
+        })
     }
 }

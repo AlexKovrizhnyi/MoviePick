@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation project(':core-network')
 
     implementation Libraries.kotlinStdLib
 
@@ -56,6 +57,9 @@ dependencies {
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
+
+    implementation Libraries.glide
+    kapt Libraries.glideCompiler
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit

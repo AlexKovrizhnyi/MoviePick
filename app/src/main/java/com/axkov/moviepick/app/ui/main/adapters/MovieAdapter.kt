@@ -52,12 +52,25 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
 
     class MovieViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val title: TextView = itemView.findViewById(R.id.item_movie_tv_title)
-        private val thumbnail: ImageView = itemView.findViewById(R.id.item_movie_iv_poster)
+        private val poster: ImageView = itemView.findViewById(R.id.item_movie_iv_poster)
 
         fun bind(item: MovieItem) {
             title.text = item.title
 
-            // TODO: Download image for MovieItem using Glide
+            val resources = itemView.resources
+            Glide.with(itemView)
+                .load("https://image.tmdb.org/t/p/w342${item.poster}")
+//                .override(
+//                    resources.getDimensionPixelOffset(R.dimen.movie_card_width),
+//                    resources.getDimensionPixelOffset(R.dimen.movie_card_height)
+//                )
+                .transform(
+                    CenterCrop(),
+                    RoundedCorners(resources
+                        .getDimensionPixelOffset(R.dimen.movie_card_rounded_corners))
+                )
+                .transition(withCrossFade())
+                .into(poster)
         }
 
         companion object {
