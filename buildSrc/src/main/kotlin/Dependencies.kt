@@ -94,6 +94,7 @@ object Libraries {
 
     // Glide
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
 
     // RxJava 3
     const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"

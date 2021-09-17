@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
-import com.axkov.moviepick.app.model.ListItem
-import com.axkov.moviepick.app.model.MovieCategoryItem
+import com.axkov.moviepick.app.models.ListItem
+import com.axkov.moviepick.app.models.MovieCategoryItem
 
 class MovieCategoryAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

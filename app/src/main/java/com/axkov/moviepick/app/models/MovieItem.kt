@@ -1,4 +1,4 @@
-package com.axkov.moviepick.app.model
+package com.axkov.moviepick.app.models
 
 data class MovieItem(
     override val itemId: Long,

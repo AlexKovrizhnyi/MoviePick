@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
-import com.axkov.moviepick.app.model.ItemPlaceholder
-import com.axkov.moviepick.app.model.MovieCategoryItem
-import com.axkov.moviepick.app.model.MovieItem
+import com.axkov.moviepick.app.models.ItemPlaceholder
+import com.axkov.moviepick.app.models.MovieCategoryItem
+import com.axkov.moviepick.app.models.MovieItem
 import com.axkov.moviepick.app.ui.base.BaseFragment
 import com.axkov.moviepick.app.ui.main.adapters.MovieCategoryAdapter
 

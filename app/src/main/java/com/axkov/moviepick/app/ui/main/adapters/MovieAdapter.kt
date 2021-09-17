@@ -8,9 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
-import com.axkov.moviepick.app.model.ItemPlaceholder
-import com.axkov.moviepick.app.model.ListItem
-import com.axkov.moviepick.app.model.MovieItem
+import com.axkov.moviepick.app.models.ItemPlaceholder
+import com.axkov.moviepick.app.models.ListItem
+import com.axkov.moviepick.app.models.MovieItem
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import java.lang.ClassCastException
 
 class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
