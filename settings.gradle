@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MoviePick"
 include ':app'
+include ':core-network'
