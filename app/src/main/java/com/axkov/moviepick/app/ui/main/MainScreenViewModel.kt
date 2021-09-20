@@ -9,8 +9,11 @@ import com.axkov.moviepick.app.models.MovieItem
 import com.axkov.moviepick.app.ui.base.BaseViewModel
 import com.axkov.moviepick.core.network.di.NetworkComponent
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainScreenViewModel: BaseViewModel() {
+class MainScreenViewModel @Inject constructor(
+    private val resources: ResourceProvider,
+): BaseViewModel() {
     private val moviesByCategories = MutableLiveData<List<ListItem>>()
 
     private val api = NetworkComponent.createApi()

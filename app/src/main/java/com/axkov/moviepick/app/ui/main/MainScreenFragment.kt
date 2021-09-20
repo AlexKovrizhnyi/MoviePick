@@ -6,12 +6,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.app.R
+import com.axkov.moviepick.app.di.MainScreenComponent
 import com.axkov.moviepick.app.ui.base.BaseFragment
 import com.axkov.moviepick.app.ui.main.adapters.MovieCategoryAdapter
 
 class MainScreenFragment : BaseFragment(R.layout.fragment_main_screen) {
-    private val viewModel by viewModels<MainScreenViewModel>()
-    private lateinit var movieCategoryAdapter: MovieCategoryAdapter
+    private val component by lazy {
+        MainScreenComponent.create(requireContext())
+    }
+
+    private val viewModel by viewModels<MainScreenViewModel> { component.viewModelFactory() }
+    private var movieCategoryAdapter: MovieCategoryAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
