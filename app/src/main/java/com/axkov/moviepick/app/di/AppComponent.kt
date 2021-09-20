@@ -4,6 +4,7 @@ import android.content.Context
 import com.axkov.moviepick.app.di.annotations.AppScope
 import com.axkov.moviepick.app.di.modules.AppModule
 import com.axkov.moviepick.app.utils.ResourceProvider
+import com.axkov.moviepick.core.network.api.MovieDbApiService
 import dagger.BindsInstance
 import dagger.Component
 
@@ -12,6 +13,7 @@ import dagger.Component
 interface AppComponent {
 
     fun getResources(): ResourceProvider
+    fun getApi(): MovieDbApiService
 
     @Component.Builder
     interface Builder {

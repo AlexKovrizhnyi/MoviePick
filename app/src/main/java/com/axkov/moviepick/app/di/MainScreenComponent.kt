@@ -7,6 +7,7 @@ import com.axkov.moviepick.app.di.modules.MainScreenModule
 import com.axkov.moviepick.app.di.modules.ViewModelModule
 import com.axkov.moviepick.app.ui.base.ViewModelFactory
 import com.axkov.moviepick.app.utils.ResourceProvider
+import com.axkov.moviepick.core.network.api.MovieDbApiService
 import dagger.BindsInstance
 import dagger.Component
 
@@ -24,6 +25,9 @@ interface MainScreenComponent {
         @BindsInstance
         fun resources(resourceProvider: ResourceProvider): Builder
 
+        @BindsInstance
+        fun api(movieDbApiService: MovieDbApiService): Builder
+
         fun build(): MainScreenComponent
     }
 
@@ -31,6 +35,7 @@ interface MainScreenComponent {
         fun create(context: Context): MainScreenComponent = DaggerMainScreenComponent
             .builder()
             .resources(context.appComponent.getResources())
+            .api(context.appComponent.getApi())
             .build()
     }
 }
