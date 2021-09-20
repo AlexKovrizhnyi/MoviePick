@@ -4,5 +4,5 @@
     <string name="latest_movies">Latest</string>
     <string name="popular_movies">Popular</string>
     <string name="upcoming_movies">Upcoming</string>
-    <string name="trending_movies">Trending</string>
+    <string name="trending_movies">Trending this week</string>
 </resources>

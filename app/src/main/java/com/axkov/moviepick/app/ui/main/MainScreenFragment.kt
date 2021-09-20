@@ -22,7 +22,7 @@ class MainScreenFragment : BaseFragment(R.layout.fragment_main_screen) {
         super.onViewCreated(view, savedInstanceState)
 
         movieCategoryAdapter = MovieCategoryAdapter()
-        movieCategoryAdapter.submitList(viewModel.getLoaders())
+        movieCategoryAdapter?.submitList(viewModel.getLoaders())
 
         val recyclerView: RecyclerView = view.findViewById(R.id.fragment_main_screen_recycler_view)
         recyclerView.layoutManager =
@@ -30,7 +30,12 @@ class MainScreenFragment : BaseFragment(R.layout.fragment_main_screen) {
         recyclerView.adapter = movieCategoryAdapter
 
         viewModel.getMovies().observe(viewLifecycleOwner, {
-            movieCategoryAdapter.submitList(it)
+            movieCategoryAdapter?.submitList(it)
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        movieCategoryAdapter = null
     }
 }

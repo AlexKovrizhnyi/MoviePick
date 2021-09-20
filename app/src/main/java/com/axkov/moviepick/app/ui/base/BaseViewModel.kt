@@ -17,6 +17,6 @@ abstract class BaseViewModel: ViewModel() {
         get() = _errorMessage
 
     override fun onCleared() {
-        compositeDisposable.dispose()
+        compositeDisposable.clear()
     }
 }

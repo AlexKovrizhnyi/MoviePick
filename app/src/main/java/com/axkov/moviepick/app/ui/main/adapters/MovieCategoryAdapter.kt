@@ -11,18 +11,15 @@ import com.axkov.moviepick.app.R
 import com.axkov.moviepick.app.models.ListItem
 import com.axkov.moviepick.app.models.MovieCategoryItem
 
-class MovieCategoryAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+class MovieCategoryAdapter: ListAdapter<ListItem, MovieCategoryAdapter.MovieCategoryViewHolder>(MovieItemDiffCallback()) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieCategoryViewHolder {
         return MovieCategoryViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is MovieCategoryViewHolder -> {
-                val categoryItem = getItem(position) as MovieCategoryItem
-                holder.bind(categoryItem)
-            }
-        }
+    override fun onBindViewHolder(holder: MovieCategoryViewHolder, position: Int) {
+        val categoryItem = getItem(position) as MovieCategoryItem
+        holder.bind(categoryItem)
     }
 
     class MovieCategoryViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
