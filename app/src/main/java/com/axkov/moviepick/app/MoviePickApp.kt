@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import com.axkov.moviepick.app.di.AppComponent
 import com.axkov.moviepick.app.di.DaggerAppComponent
+import com.axkov.moviepick.features.home.di.HomeScreenComponent
+import com.axkov.moviepick.features.home.di.HomeScreenComponentProvider
 
-class MoviePickApp: Application() {
+class MoviePickApp: Application(), HomeScreenComponentProvider {
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
@@ -16,6 +18,10 @@ class MoviePickApp: Application() {
     override fun onCreate() {
         super.onCreate()
 
+    }
+
+    override fun getHomeScreenComponent(): HomeScreenComponent {
+        return appComponent.plusHomeScreenComponent().build()
     }
 }
 

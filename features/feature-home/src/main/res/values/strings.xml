@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="latest_movies">Latest</string>
+    <string name="popular_movies">Popular</string>
+    <string name="upcoming_movies">Upcoming</string>
+    <string name="trending_movies">Trending this week</string>
+    <string name="title_main_screen">Main Screen</string>
+    <string name="title_details">Details Screen</string>
+</resources>

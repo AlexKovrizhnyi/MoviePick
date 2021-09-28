@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainScreenFragment">
+    app:startDestination="@id/homeScreenFragment">
 
     <fragment
-        android:id="@+id/mainScreenFragment"
-        android:name="com.axkov.moviepick.app.ui.main.MainScreenFragment"
+        android:id="@+id/homeScreenFragment"
+        android:name="com.axkov.moviepick.features.home.HomeFragment"
         android:label="MoviePick"
         tools:layout="@layout/fragment_main_screen" />
 </navigation>

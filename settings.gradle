@@ -7,4 +7,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MoviePick"
 include ':app'
-include ':core-network'
+include ':core'
+include ':moviedb-api'
+include ':features:feature-home'
