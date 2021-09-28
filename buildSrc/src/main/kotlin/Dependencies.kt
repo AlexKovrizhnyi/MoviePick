@@ -17,7 +17,7 @@ object AndroidClient {
 
 object BuildPlugins {
     object Versions {
-        const val buildToolsVersion = "4.2.1"
+        const val buildToolsVersion = "7.0.2"
         const val navigation = "2.3.5"
     }
 
