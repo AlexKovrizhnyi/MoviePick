@@ -1,4 +1,4 @@
-package com.axkov.moviepick.core.network.api.models
+package com.axkov.moviepick.api.entities
 
 import com.google.gson.annotations.SerializedName
 
