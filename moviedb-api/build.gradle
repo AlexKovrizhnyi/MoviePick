@@ -1,31 +1,14 @@
 plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+    id 'java-library'
+    id 'kotlin'
 }
 
-android {
-    compileSdkVersion AndroidSdk.compile
+java {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
+}
 
-    defaultConfig {
-        minSdkVersion AndroidSdk.min
-        targetSdkVersion AndroidSdk.target
-        versionCode AndroidClient.versionCode
-        versionName AndroidClient.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
+compileKotlin {
     kotlinOptions {
         jvmTarget = '11'
     }
@@ -33,7 +16,6 @@ android {
 
 dependencies {
 
-    implementation Libraries.coreKtx
     implementation Libraries.retrofit
     implementation Libraries.okHttpLoggingInterceptor
     implementation Libraries.adapterRxJava
@@ -42,5 +24,4 @@ dependencies {
     implementation Libraries.rxJava
 
     testImplementation TestLibraries.junit
-    androidTestImplementation TestLibraries.extJunit
 }
