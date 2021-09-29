@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    // TODO: Change api to implementation when DataSources will be implemented
+    api project(':moviedb-api')
+
     implementation Libraries.coreKtx
     implementation Libraries.fragmentKtx
     implementation Libraries.liveData
@@ -42,6 +45,11 @@ dependencies {
     kapt Libraries.daggerCompiler
 
     implementation Libraries.rxJava
+
+    implementation Libraries.retrofit
+    implementation Libraries.okHttpLoggingInterceptor
+    implementation Libraries.adapterRxJava
+    implementation Libraries.converterGson
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit

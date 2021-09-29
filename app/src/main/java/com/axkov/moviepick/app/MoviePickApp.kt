@@ -4,16 +4,25 @@ import android.app.Application
 import android.content.Context
 import com.axkov.moviepick.app.di.AppComponent
 import com.axkov.moviepick.app.di.DaggerAppComponent
+import com.axkov.moviepick.core.di.CoreComponent
+import com.axkov.moviepick.core.di.DaggerCoreComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponentProvider
 
 class MoviePickApp: Application(), HomeScreenComponentProvider {
 
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.builder()
+    private val coreComponent: CoreComponent by lazy {
+        DaggerCoreComponent.builder()
             .appContext(applicationContext)
             .build()
     }
+
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+            .coreComponent(coreComponent)
+            .build()
+    }
+
 
     override fun onCreate() {
         super.onCreate()
@@ -29,4 +38,10 @@ val Context.appComponent: AppComponent
     get() = when (this) {
         is MoviePickApp -> appComponent
         else -> this.applicationContext.appComponent
+    }
+
+val Context.coreComponent: AppComponent
+    get() = when (this) {
+        is MoviePickApp -> appComponent
+        else -> this.applicationContext.coreComponent
     }

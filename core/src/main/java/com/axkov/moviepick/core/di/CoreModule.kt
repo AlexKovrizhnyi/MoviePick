@@ -6,8 +6,8 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class CoreModule {
+interface CoreModule {
 
     @Binds
-    abstract fun bindResourceProvider(provider: AndroidResourceProvider): ResourceProvider
+    fun bindResourceProvider(provider: AndroidResourceProvider): ResourceProvider
 }

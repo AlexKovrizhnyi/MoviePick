@@ -8,5 +8,4 @@ import dagger.Module
         HomeScreenComponent::class
     ]
 )
-class AppSubcomponents {
-}
+interface AppSubcomponents

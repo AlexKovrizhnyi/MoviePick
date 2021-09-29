@@ -34,7 +34,6 @@ android {
 
 dependencies {
     implementation project(':core')
-    implementation project(':moviedb-api')
 
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
