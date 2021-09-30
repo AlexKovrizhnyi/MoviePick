@@ -7,12 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.core.ui.BaseFragment
 import com.axkov.moviepick.features.home.adapters.MovieCategoryAdapter
-import com.axkov.moviepick.features.home.di.HomeScreenComponentProvider
+import com.axkov.moviepick.features.home.di.HomeScreenComponentBuilderProvider
 
 class HomeFragment : BaseFragment(R.layout.fragment_main_screen) {
     private val component by lazy {
-        (requireActivity().application as HomeScreenComponentProvider)
-            .getHomeScreenComponent()
+        (requireActivity().application as HomeScreenComponentBuilderProvider).get().build()
     }
 
     private val viewModel by viewModels<HomeViewModel> { component.viewModelFactory() }

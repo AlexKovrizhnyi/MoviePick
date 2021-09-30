@@ -2,6 +2,7 @@ package com.axkov.moviepick.features.home.di
 
 import com.axkov.moviepick.core.ui.ViewModelFactory
 import dagger.Subcomponent
+import javax.inject.Provider
 import javax.inject.Scope
 
 @Scope
@@ -26,6 +27,4 @@ interface HomeScreenComponent {
     }
 }
 
-interface HomeScreenComponentProvider {
-    fun getHomeScreenComponent(): HomeScreenComponent
-}
+interface HomeScreenComponentBuilderProvider: Provider<HomeScreenComponent.Builder>
