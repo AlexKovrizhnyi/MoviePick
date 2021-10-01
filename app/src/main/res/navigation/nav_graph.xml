@@ -9,5 +9,5 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.axkov.moviepick.features.home.HomeFragment"
         android:label="MoviePick"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_home_screen" />
 </navigation>

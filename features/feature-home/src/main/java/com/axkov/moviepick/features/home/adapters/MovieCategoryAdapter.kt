@@ -1,13 +1,12 @@
 package com.axkov.moviepick.features.home.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.axkov.moviepick.features.home.R
+import com.axkov.moviepick.features.home.databinding.ItemMovieCategoryHorizontalBinding
 import com.axkov.moviepick.features.home.models.ListItem
 import com.axkov.moviepick.features.home.models.MovieCategoryItem
 
@@ -24,17 +23,16 @@ class MovieCategoryAdapter : ListAdapter<ListItem, MovieCategoryAdapter.MovieCat
         holder.bind(categoryItem)
     }
 
-    class MovieCategoryViewHolder private constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
+    class MovieCategoryViewHolder private constructor(binding: ItemMovieCategoryHorizontalBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        private val categoryTitle: TextView = itemView.findViewById(R.id.tv_category_title)
-        private val categoryRecyclerView: RecyclerView =
-            itemView.findViewById(R.id.category_recycler_view)
+        private val categoryTitle: TextView = binding.tvCategoryTitle
+        private val categoryRecyclerView: RecyclerView = binding.categoryRecyclerView
         private val movieAdapter = MovieAdapter()
 
         init {
             categoryRecyclerView.layoutManager = LinearLayoutManager(
-                itemView.context,
+                binding.root.context,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
@@ -49,9 +47,9 @@ class MovieCategoryAdapter : ListAdapter<ListItem, MovieCategoryAdapter.MovieCat
         companion object {
             fun from(parent: ViewGroup): MovieCategoryViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view =
-                    layoutInflater.inflate(R.layout.item_movie_category_horizontal, parent, false)
-                return MovieCategoryViewHolder(view)
+                val binding =
+                    ItemMovieCategoryHorizontalBinding.inflate(layoutInflater, parent, false)
+                return MovieCategoryViewHolder(binding)
             }
         }
     }

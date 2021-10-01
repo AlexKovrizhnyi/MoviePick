@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.features.home.R
+import com.axkov.moviepick.features.home.databinding.ItemMovieBinding
 import com.axkov.moviepick.features.home.models.ItemPlaceholder
 import com.axkov.moviepick.features.home.models.ListItem
 import com.axkov.moviepick.features.home.models.MovieItem
@@ -50,9 +51,9 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
         }
     }
 
-    class MovieViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val title: TextView = itemView.findViewById(R.id.item_movie_tv_title)
-        private val poster: ImageView = itemView.findViewById(R.id.item_movie_iv_poster)
+    class MovieViewHolder private constructor(binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
+        private val title: TextView = binding.itemMovieTvTitle
+        private val poster: ImageView = binding.itemMovieIvPoster
 
         fun bind(item: MovieItem) {
             title.text = item.title
@@ -76,8 +77,8 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
         companion object {
             fun from(parent: ViewGroup): MovieViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.item_movie, parent, false)
-                return MovieViewHolder(view)
+                val binding = ItemMovieBinding.inflate(layoutInflater, parent, false)
+                return MovieViewHolder(binding)
             }
         }
     }
