@@ -17,11 +17,11 @@ object AndroidClient {
 
 object BuildPlugins {
     object Versions {
-        const val buildToolsVersion = "7.0.2"
+        const val gradleVersion = "7.0.2"
         const val navigation = "2.3.5"
     }
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.gradleVersion}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.stdLib}"
     const val navSafeArgsGradlePlugin =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"

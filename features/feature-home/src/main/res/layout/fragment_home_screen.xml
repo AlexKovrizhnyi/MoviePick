@@ -13,6 +13,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:orientation="vertical"
-        tools:listitem="@layout/item_movie_category_horizontal"/>
+        tools:listitem="@layout/item_movie_category"/>
 
 </FrameLayout>

@@ -3,8 +3,6 @@ package com.axkov.moviepick.features.home.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.features.home.R
@@ -16,9 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
-import java.lang.ClassCastException
 
-class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
+class MovieAdapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
 
     private companion object {
         const val MOVIE_ITEM = 1
@@ -51,12 +48,11 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
         }
     }
 
-    class MovieViewHolder private constructor(binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
-        private val title: TextView = binding.itemMovieTvTitle
-        private val poster: ImageView = binding.itemMovieIvPoster
+    class MovieViewHolder private constructor(private val binding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: MovieItem) {
-            title.text = item.title
+            binding.itemMovieTvTitle.text = item.title
 
             val resources = itemView.resources
             Glide.with(itemView)
@@ -67,11 +63,13 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
 //                )
                 .transform(
                     CenterCrop(),
-                    RoundedCorners(resources
-                        .getDimensionPixelOffset(R.dimen.movie_card_rounded_corners))
+                    RoundedCorners(
+                        resources
+                            .getDimensionPixelOffset(R.dimen.movie_card_rounded_corners)
+                    )
                 )
                 .transition(withCrossFade())
-                .into(poster)
+                .into(binding.itemMovieIvPoster)
         }
 
         companion object {
@@ -83,7 +81,8 @@ class MovieAdapter: ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiff
         }
     }
 
-    class MoviePlaceholderViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MoviePlaceholderViewHolder private constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
         companion object {
             fun from(parent: ViewGroup): MoviePlaceholderViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)

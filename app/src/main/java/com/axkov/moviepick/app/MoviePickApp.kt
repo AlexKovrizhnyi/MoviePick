@@ -9,7 +9,7 @@ import com.axkov.moviepick.core.di.DaggerCoreComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponentBuilderProvider
 
-class MoviePickApp: Application(), HomeScreenComponentBuilderProvider {
+class MoviePickApp : Application(), HomeScreenComponentBuilderProvider {
 
     private val coreComponent: CoreComponent by lazy {
         DaggerCoreComponent.builder()
@@ -23,15 +23,10 @@ class MoviePickApp: Application(), HomeScreenComponentBuilderProvider {
             .build()
     }
 
-
     override fun onCreate() {
         super.onCreate()
 
     }
-
-//    override fun getHomeScreenComponent(): HomeScreenComponent {
-//        return appComponent.plusHomeScreenComponent().build()
-//    }
 
     override fun get(): HomeScreenComponent.Builder {
         return appComponent.plusHomeScreenComponent()
