@@ -4,6 +4,9 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdkVersion AndroidSdk.compile
 
@@ -15,6 +18,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "MOVIE_DB_API_KEY", localProperties["MOVIE_DB_API_KEY"])
     }
 
     buildTypes {
