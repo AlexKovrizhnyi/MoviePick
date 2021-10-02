@@ -1,13 +1,12 @@
 package com.axkov.moviepick.core.di
 
-import com.axkov.moviepick.api.TrendingService
+import com.axkov.moviepick.api.MovieDbApi
+import com.axkov.moviepick.api.MovieDbApiKeyProvider
 import com.axkov.moviepick.core.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.CallAdapter
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,12 +18,12 @@ abstract class NetworkModule {
     companion object {
         @Singleton
         @Provides
-        fun provideGsonConverterFactory(): Converter.Factory =
+        fun provideGsonConverterFactory(): GsonConverterFactory =
             GsonConverterFactory.create()
 
         @Singleton
         @Provides
-        fun provideRxJavaCallAdapterFactory(): CallAdapter.Factory =
+        fun provideRxJavaCallAdapterFactory(): RxJava3CallAdapterFactory =
             RxJava3CallAdapterFactory.create()
 
         @Singleton
@@ -45,11 +44,11 @@ abstract class NetworkModule {
         @Provides
         fun provideRetrofit(
             okHttpClient: OkHttpClient,
-            converterFactory: Converter.Factory,
-            callAdapterFactory: CallAdapter.Factory
+            converterFactory: GsonConverterFactory,
+            callAdapterFactory: RxJava3CallAdapterFactory
         ): Retrofit =
             Retrofit.Builder()
-                .baseUrl(TrendingService.BASE_URL)
+                .baseUrl(MovieDbApi.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
@@ -57,7 +56,16 @@ abstract class NetworkModule {
 
         @Singleton
         @Provides
-        fun provideTrendingService(retrofit: Retrofit): TrendingService =
-            retrofit.create(TrendingService::class.java)
+        fun provideMovieDbApiKeyProvider(): MovieDbApiKeyProvider = object : MovieDbApiKeyProvider {
+            override val apiKey: String
+                get() = BuildConfig.MOVIE_DB_API_KEY
+        }
+
+        @Singleton
+        @Provides
+        fun provideMovieDbApi(
+            apiKeyProvider: MovieDbApiKeyProvider,
+            retrofit: Retrofit
+        ): MovieDbApi = MovieDbApi(apiKeyProvider, retrofit)
     }
 }

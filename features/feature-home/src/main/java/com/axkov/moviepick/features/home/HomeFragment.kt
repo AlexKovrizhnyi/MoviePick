@@ -18,6 +18,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home_screen) {
     private lateinit var binding: FragmentHomeScreenBinding
 
     private val viewModel by viewModels<HomeViewModel> { component.viewModelFactory() }
+
     private var movieCategoryAdapter: MovieCategoryAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

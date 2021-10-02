@@ -7,10 +7,6 @@ import retrofit2.http.Query
 
 interface TrendingService {
 
-    companion object {
-        const val BASE_URL = "https://api.themoviedb.org/"
-    }
-
     @GET("3/trending/movie/week")
     fun getTrendingWeek(
         @Query("api_key") apiKey: String
