@@ -8,7 +8,6 @@ import dagger.Component
 @Component(
     modules = [
         AppModule::class,
-        AppSubcomponents::class,
     ],
     dependencies = [CoreComponent::class]
 )
