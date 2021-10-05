@@ -1,7 +1,8 @@
 package com.axkov.moviepick.core.di
 
 import com.axkov.moviepick.api.MovieDbApi
-import com.axkov.moviepick.api.MovieDbApiKeyProvider
+import com.axkov.moviepick.api.TmdbApiKeyProvider
+import com.axkov.moviepick.api.TmdbInterceptor
 import com.axkov.moviepick.core.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -28,7 +29,7 @@ abstract class NetworkModule {
 
         @Singleton
         @Provides
-        fun provideOkHttpClient(): OkHttpClient =
+        fun provideOkHttpClient(apiKeyProvider: TmdbApiKeyProvider): OkHttpClient =
             OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().apply {
                     level = if (BuildConfig.DEBUG) {
@@ -37,6 +38,7 @@ abstract class NetworkModule {
                         HttpLoggingInterceptor.Level.NONE
                     }
                 })
+                .addInterceptor(TmdbInterceptor(apiKeyProvider))
                 .build()
 
 
@@ -48,7 +50,7 @@ abstract class NetworkModule {
             callAdapterFactory: RxJava3CallAdapterFactory
         ): Retrofit =
             Retrofit.Builder()
-                .baseUrl(MovieDbApi.BASE_URL)
+                .baseUrl(MovieDbApi.API_URL)
                 .client(okHttpClient)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
@@ -56,15 +58,12 @@ abstract class NetworkModule {
 
         @Singleton
         @Provides
-        fun provideMovieDbApiKeyProvider(): MovieDbApiKeyProvider = object : MovieDbApiKeyProvider {
-            override val apiKey: String
-                get() = BuildConfig.MOVIE_DB_API_KEY
-        }
+        fun provideTmdbApiKeyProvider(): TmdbApiKeyProvider =
+            object : TmdbApiKeyProvider(BuildConfig.MOVIE_DB_API_KEY) {}
 
-        @Singleton
-        @Provides
+        @[Singleton Provides]
         fun provideMovieDbApi(
-            apiKeyProvider: MovieDbApiKeyProvider,
+            apiKeyProvider: TmdbApiKeyProvider,
             retrofit: Retrofit
         ): MovieDbApi = MovieDbApi(apiKeyProvider, retrofit)
     }

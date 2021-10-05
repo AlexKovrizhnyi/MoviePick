@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun loadContent() {
-        compositeDisposable.add(api.trending.getTrendingWeek(api.apiKey)
+        compositeDisposable.add(api.trending.getTrendingWeek()
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {

@@ -3,11 +3,15 @@ package com.axkov.moviepick.api
 import retrofit2.Retrofit
 
 class MovieDbApi(
-    private val apiKeyProvider: MovieDbApiKeyProvider,
+    private val apiKeyProvider: TmdbApiKeyProvider,
     private val retrofit: Retrofit,
 ) {
     companion object {
-        const val BASE_URL = "https://api.themoviedb.org/"
+        const val API_HOST = "api.themoviedb.org"
+        const val API_VERSION = "3"
+        const val API_URL = "https://${API_HOST}/${API_VERSION}/"
+
+        const val PARAM_API_KEY = "api_key"
     }
 
     val apiKey: String

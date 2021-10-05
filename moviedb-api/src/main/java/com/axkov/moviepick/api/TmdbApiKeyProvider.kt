@@ -1,10 +1,11 @@
 package com.axkov.moviepick.api
 
-interface MovieDbApiKeyProvider {
-    /**
-     * The Movie Database Api key
-     */
-    val apiKey: String?
+/**
+ * Provides The Movie Database API key
+ */
+abstract class TmdbApiKeyProvider(
+    private val apiKey: String?
+) {
 
     /**
      * Returns the Movie Database Api key, if the [apiKey] is null throws an [IllegalStateException]
