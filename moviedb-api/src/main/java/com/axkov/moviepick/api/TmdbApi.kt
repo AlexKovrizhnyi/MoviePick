@@ -2,7 +2,7 @@ package com.axkov.moviepick.api
 
 import retrofit2.Retrofit
 
-class MovieDbApi(
+class TmdbApi(
     private val apiKeyProvider: TmdbApiKeyProvider,
     private val retrofit: Retrofit,
 ) {

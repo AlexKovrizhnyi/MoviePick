@@ -1,6 +1,6 @@
 package com.axkov.moviepick.core.di
 
-import com.axkov.moviepick.api.MovieDbApi
+import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.api.TmdbApiKeyProvider
 import com.axkov.moviepick.api.TmdbInterceptor
 import com.axkov.moviepick.core.BuildConfig
@@ -50,7 +50,7 @@ abstract class NetworkModule {
             callAdapterFactory: RxJava3CallAdapterFactory
         ): Retrofit =
             Retrofit.Builder()
-                .baseUrl(MovieDbApi.API_URL)
+                .baseUrl(TmdbApi.API_URL)
                 .client(okHttpClient)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
@@ -65,6 +65,6 @@ abstract class NetworkModule {
         fun provideMovieDbApi(
             apiKeyProvider: TmdbApiKeyProvider,
             retrofit: Retrofit
-        ): MovieDbApi = MovieDbApi(apiKeyProvider, retrofit)
+        ): TmdbApi = TmdbApi(apiKeyProvider, retrofit)
     }
 }

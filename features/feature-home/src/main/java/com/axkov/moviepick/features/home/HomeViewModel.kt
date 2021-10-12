@@ -2,7 +2,7 @@ package com.axkov.moviepick.features.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.axkov.moviepick.api.MovieDbApi
+import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.core.ui.BaseViewModel
 import com.axkov.moviepick.core.utils.ResourceProvider
 import com.axkov.moviepick.features.home.models.ItemPlaceholder
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val resources: ResourceProvider,
-    private val api: MovieDbApi,
+    private val api: TmdbApi,
 ) : BaseViewModel() {
     private val moviesByCategories = MutableLiveData<List<ListItem>>()
 

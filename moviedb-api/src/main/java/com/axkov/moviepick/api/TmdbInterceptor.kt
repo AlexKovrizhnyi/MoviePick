@@ -12,7 +12,7 @@ class TmdbInterceptor(private val apiKeyProvider: TmdbApiKeyProvider): Intercept
         val request = chain.request()
 
         val urlBuilder = request.url.newBuilder()
-        urlBuilder.setEncodedQueryParameter(MovieDbApi.PARAM_API_KEY, apiKeyProvider.requireApiKey())
+        urlBuilder.setEncodedQueryParameter(TmdbApi.PARAM_API_KEY, apiKeyProvider.requireApiKey())
 
         val requestBuilder = request.newBuilder().url(urlBuilder.build())
         val response = chain.proceed(requestBuilder.build())
