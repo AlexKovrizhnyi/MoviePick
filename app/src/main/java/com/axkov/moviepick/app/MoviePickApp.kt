@@ -8,6 +8,7 @@ import com.axkov.moviepick.core.di.CoreComponent
 import com.axkov.moviepick.core.di.DaggerCoreComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponent
 import com.axkov.moviepick.features.home.di.HomeScreenComponentBuilderProvider
+import timber.log.Timber
 
 class MoviePickApp : Application(), HomeScreenComponentBuilderProvider {
 
@@ -26,6 +27,7 @@ class MoviePickApp : Application(), HomeScreenComponentBuilderProvider {
     override fun onCreate() {
         super.onCreate()
 
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
     override fun get(): HomeScreenComponent.Builder {

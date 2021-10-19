@@ -56,6 +56,8 @@ dependencies {
     implementation Libraries.adapterRxJava
     implementation Libraries.converterGson
 
+    api Libraries.timber
+
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit
 }

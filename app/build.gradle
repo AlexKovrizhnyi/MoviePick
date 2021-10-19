@@ -41,28 +41,14 @@ dependencies {
 
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
-    implementation Libraries.constraintLayout
-    implementation Libraries.fragmentKtx
-
-    implementation Libraries.viewModel
-    implementation Libraries.liveData
-    kapt Libraries.lifecycleCompiler
 
     implementation Libraries.navigation
     implementation Libraries.navigationUi
 
-    implementation Libraries.material
-
-    implementation Libraries.rxJava
-    implementation Libraries.rxAndroid
-
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 
-    implementation Libraries.glide
-    kapt Libraries.glideCompiler
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit
-    androidTestImplementation TestLibraries.espressoCore
 }

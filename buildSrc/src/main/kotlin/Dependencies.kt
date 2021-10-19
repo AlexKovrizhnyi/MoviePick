@@ -57,6 +57,9 @@ object Libraries {
 
         // Dagger
         const val dagger = "2.38.1"
+
+        // Timber
+        const val timber = "5.0.1"
     }
 
     // Kotlin
@@ -103,6 +106,9 @@ object Libraries {
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    // Timber
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 }
 
 object TestLibraries {
