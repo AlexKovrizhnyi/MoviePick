@@ -1,6 +1,6 @@
 package com.axkov.moviepick.api
 
-import com.axkov.moviepick.api.entities.TrendingResponse
+import com.axkov.moviepick.api.models.TrendingResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
