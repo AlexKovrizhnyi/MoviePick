@@ -2,20 +2,20 @@ package com.axkov.moviepick.features.home.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.core.ui.BaseViewModel
 import com.axkov.moviepick.core.utils.ResourceProvider
 import com.axkov.moviepick.features.home.R
+import com.axkov.moviepick.features.home.domain.repositories.TrendingRepository
 import com.axkov.moviepick.features.home.ui.models.ItemPlaceholder
 import com.axkov.moviepick.features.home.ui.models.ListItem
 import com.axkov.moviepick.features.home.ui.models.MovieCategoryItem
 import com.axkov.moviepick.features.home.ui.models.MovieItem
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.axkov.moviepick.features.home.ui.models.mappers.toMovieItem
 import javax.inject.Inject
 
 internal class HomeViewModel @Inject constructor(
     private val resources: ResourceProvider,
-    private val api: TmdbApi,
+    private val repository: TrendingRepository
 ) : BaseViewModel() {
     private val moviesByCategories = MutableLiveData<List<ListItem>>()
 
@@ -42,30 +42,28 @@ internal class HomeViewModel @Inject constructor(
     }
 
     private fun loadContent() {
-        compositeDisposable.add(api.trending.getTrendingWeek()
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {
-                    val movies = listOf(
-                        MovieCategoryItem(
-                            resources.getString(R.string.trending_movies),
-                            it.results.map { movieDto ->
-                                MovieItem(movieDto.id, movieDto.title, movieDto.poster)
-                            }),
-                        MovieCategoryItem(
-                            "Category 2",
-                            listOf(
-                                MovieItem(12, "Title", null),
-                                ItemPlaceholder
+        compositeDisposable.add(
+            repository.getTrendingWeek()
+                .subscribe(
+                    {
+                        val movies = listOf(
+                            MovieCategoryItem(
+                                resources.getString(R.string.trending_movies),
+                                it.map { movie -> movie.toMovieItem() }),
+                            MovieCategoryItem(
+                                "Category 2",
+                                listOf(
+                                    MovieItem(12, "Title", null),
+                                    ItemPlaceholder
+                                )
                             )
                         )
-                    )
-                    moviesByCategories.postValue(movies)
-                },
-                {
+                        moviesByCategories.postValue(movies)
+                    },
+                    {
 
-                }
-            ))
+                    })
+        )
     }
 
 }
