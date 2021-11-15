@@ -1,11 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
-
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
 android {
     compileSdkVersion AndroidSdk.compile
@@ -18,8 +14,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        buildConfigField("String", "MOVIE_DB_API_KEY", localProperties["MOVIE_DB_API_KEY"])
     }
 
     buildTypes {
@@ -38,25 +32,10 @@ android {
 }
 
 dependencies {
-    implementation project(':moviedb-api')
-    implementation project(':domain')
 
     implementation Libraries.coreKtx
-    implementation Libraries.fragmentKtx
-    implementation Libraries.liveData
-    implementation Libraries.viewModel
-
-    implementation Libraries.dagger
-    kapt Libraries.daggerCompiler
 
     implementation Libraries.rxJava
-
-    implementation Libraries.retrofit
-    implementation Libraries.okHttpLoggingInterceptor
-    implementation Libraries.adapterRxJava
-    implementation Libraries.converterGson
-
-    api Libraries.timber
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit
