@@ -31,13 +31,3 @@ interface HomeDependencies {
 object HomeDepsStore : DependenciesProvider<HomeDependencies> {
     override var dependencies: HomeDependencies by notNull()
 }
-
-//interface HomeDepsProvider {
-//    val deps: HomeDependencies
-//
-//    companion object : HomeDepsProvider by HomeDepsStore
-//}
-//
-//object HomeDepsStore : HomeDepsProvider {
-//    override var deps: HomeDependencies by notNull()
-//}

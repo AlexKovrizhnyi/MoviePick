@@ -13,7 +13,7 @@ import com.axkov.moviepick.features.home.ui.models.MovieItem
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(
+internal class HomeViewModel @Inject constructor(
     private val resources: ResourceProvider,
     private val api: TmdbApi,
 ) : BaseViewModel() {

@@ -1,41 +1,25 @@
 package com.axkov.moviepick.core.ui
 
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import javax.inject.Inject
-import javax.inject.Provider
 
-class ViewModelFactory @Inject constructor(
-    private val creators: @JvmSuppressWildcards MutableMap<Class<out ViewModel>, Provider<ViewModel>>
-): ViewModelProvider.Factory {
-
+inline fun <reified VM : ViewModel> Fragment.viewModel(
+    crossinline provider: () -> VM
+) = viewModels<VM> {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val viewModelProvider = creators[modelClass] ?: creators.entries.firstOrNull {
-            modelClass.isAssignableFrom(it.key)
-        }?.value ?: throw IllegalArgumentException("Unknown ViewModel class: $modelClass")
+    object : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = provider() as T
+    }
+}
 
-        return viewModelProvider.get() as T
-
-//        var viewModelProvider: Provider<out ViewModel>? = creators[modelClass]
-//
-//        if (viewModelProvider == null) {
-//            for ((key, value) in creators) {
-//                if (modelClass.isAssignableFrom(key)) {
-//                    viewModelProvider = value
-//                    break
-//                }
-//            }
-//        }
-//
-//        if (viewModelProvider == null) {
-//            throw IllegalArgumentException("Unknown ViewModel class: $modelClass")
-//        }
-//
-//        try {
-//            return viewModelProvider.get() as T
-//        } catch (e: Exception) {
-//            throw RuntimeException(e)
-//        }
+inline fun <reified VM : ViewModel> Fragment.activityViewModel(
+    crossinline provider: () -> VM
+) = activityViewModels<VM> {
+    @Suppress("UNCHECKED_CAST")
+    object : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = provider() as T
     }
 }

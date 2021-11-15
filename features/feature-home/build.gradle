@@ -38,6 +38,8 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':domain')
+    implementation project(':moviedb-api')
 
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
