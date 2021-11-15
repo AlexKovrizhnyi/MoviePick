@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeScreenFragment"
-        android:name="com.axkov.moviepick.features.home.HomeFragment"
+        android:name="com.axkov.moviepick.features.home.ui.HomeFragment"
         android:label="MoviePick"
         tools:layout="@layout/fragment_home_screen" />
 </navigation>

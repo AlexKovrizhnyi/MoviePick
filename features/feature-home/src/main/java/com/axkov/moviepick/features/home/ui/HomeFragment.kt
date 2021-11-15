@@ -1,4 +1,4 @@
-package com.axkov.moviepick.features.home
+package com.axkov.moviepick.features.home.ui
 
 import android.os.Bundle
 import android.view.View

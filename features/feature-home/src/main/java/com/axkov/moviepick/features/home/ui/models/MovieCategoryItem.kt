@@ -1,6 +1,6 @@
-package com.axkov.moviepick.features.home.models
+package com.axkov.moviepick.features.home.ui.models
 
-data class MovieCategoryItem(
+internal data class MovieCategoryItem(
     val title: String,
     val movieList: List<ListItem>
 ): ListItem {

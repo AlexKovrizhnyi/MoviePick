@@ -1,14 +1,15 @@
-package com.axkov.moviepick.features.home
+package com.axkov.moviepick.features.home.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.core.ui.BaseViewModel
 import com.axkov.moviepick.core.utils.ResourceProvider
-import com.axkov.moviepick.features.home.models.ItemPlaceholder
-import com.axkov.moviepick.features.home.models.ListItem
-import com.axkov.moviepick.features.home.models.MovieCategoryItem
-import com.axkov.moviepick.features.home.models.MovieItem
+import com.axkov.moviepick.features.home.R
+import com.axkov.moviepick.features.home.ui.models.ItemPlaceholder
+import com.axkov.moviepick.features.home.ui.models.ListItem
+import com.axkov.moviepick.features.home.ui.models.MovieCategoryItem
+import com.axkov.moviepick.features.home.ui.models.MovieItem
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 

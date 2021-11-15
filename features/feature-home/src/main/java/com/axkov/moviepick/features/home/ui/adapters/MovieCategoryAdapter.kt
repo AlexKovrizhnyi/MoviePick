@@ -1,4 +1,4 @@
-package com.axkov.moviepick.features.home.adapters
+package com.axkov.moviepick.features.home.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.features.home.databinding.ItemMovieCategoryBinding
-import com.axkov.moviepick.features.home.models.ListItem
-import com.axkov.moviepick.features.home.models.MovieCategoryItem
+import com.axkov.moviepick.features.home.ui.models.ListItem
+import com.axkov.moviepick.features.home.ui.models.MovieCategoryItem
 
-class MovieCategoryAdapter : ListAdapter<ListItem, MovieCategoryAdapter.MovieCategoryViewHolder>(
+internal class MovieCategoryAdapter : ListAdapter<ListItem, MovieCategoryAdapter.MovieCategoryViewHolder>(
     MovieItemDiffCallback()
 ) {
 

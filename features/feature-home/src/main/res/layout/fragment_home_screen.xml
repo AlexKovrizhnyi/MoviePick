@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.axkov.moviepick.features.home.HomeFragment"
+    tools:context="com.axkov.moviepick.features.home.ui.HomeFragment"
     tools:background="@color/baseBlack"
     android:background="@color/baseBlack">
 

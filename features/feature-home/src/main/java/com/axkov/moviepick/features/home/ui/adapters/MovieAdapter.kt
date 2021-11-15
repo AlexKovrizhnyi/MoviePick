@@ -1,4 +1,4 @@
-package com.axkov.moviepick.features.home.adapters
+package com.axkov.moviepick.features.home.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.ItemMovieBinding
-import com.axkov.moviepick.features.home.models.ItemPlaceholder
-import com.axkov.moviepick.features.home.models.ListItem
-import com.axkov.moviepick.features.home.models.MovieItem
+import com.axkov.moviepick.features.home.ui.models.ItemPlaceholder
+import com.axkov.moviepick.features.home.ui.models.ListItem
+import com.axkov.moviepick.features.home.ui.models.MovieItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 
-class MovieAdapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
+internal class MovieAdapter : ListAdapter<ListItem, RecyclerView.ViewHolder>(MovieItemDiffCallback()) {
 
     private companion object {
         const val MOVIE_ITEM = 1
