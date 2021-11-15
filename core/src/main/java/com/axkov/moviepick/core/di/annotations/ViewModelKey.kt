@@ -1,4 +1,4 @@
-package com.axkov.moviepick.core.di
+package com.axkov.moviepick.core.di.annotations
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

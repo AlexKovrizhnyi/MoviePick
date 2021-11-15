@@ -1,4 +1,4 @@
-package com.axkov.moviepick.app.di
+package com.axkov.moviepick.core.di.annotations
 
 import javax.inject.Scope
 

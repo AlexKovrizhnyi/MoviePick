@@ -1,17 +1,23 @@
 package com.axkov.moviepick.app.di
 
-import com.axkov.moviepick.core.di.CoreComponent
-import com.axkov.moviepick.features.home.di.HomeScreenComponent
+import android.content.Context
+import com.axkov.moviepick.core.di.annotations.AppScope
+import com.axkov.moviepick.features.home.di.HomeDependencies
+import dagger.BindsInstance
 import dagger.Component
 
 @AppScope
 @Component(
     modules = [
         AppModule::class,
-    ],
-    dependencies = [CoreComponent::class]
+    ]
 )
-interface AppComponent {
+interface AppComponent : HomeDependencies {
 
-    fun plusHomeScreenComponent(): HomeScreenComponent.Builder
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance applicationContext: Context
+        ): AppComponent
+    }
 }
