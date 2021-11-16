@@ -6,7 +6,7 @@ import com.axkov.moviepick.features.home.domain.repositories.TrendingRepository
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class TrendingRepositoryImpl @Inject constructor(
+internal class TrendingRepositoryImpl @Inject constructor(
     private val dataSource: TrendingDataSource,
 ): TrendingRepository {
 

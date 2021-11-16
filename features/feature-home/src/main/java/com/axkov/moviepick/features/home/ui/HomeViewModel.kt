@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.axkov.moviepick.core.ui.BaseViewModel
 import com.axkov.moviepick.core.utils.ResourceProvider
 import com.axkov.moviepick.features.home.R
-import com.axkov.moviepick.features.home.domain.repositories.TrendingRepository
+import com.axkov.moviepick.features.home.domain.usecases.GetTrending
 import com.axkov.moviepick.features.home.ui.models.ItemPlaceholder
 import com.axkov.moviepick.features.home.ui.models.ListItem
 import com.axkov.moviepick.features.home.ui.models.MovieCategoryItem
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 internal class HomeViewModel @Inject constructor(
     private val resources: ResourceProvider,
-    private val repository: TrendingRepository
+    private val getTrending: GetTrending
 ) : BaseViewModel() {
     private val moviesByCategories = MutableLiveData<List<ListItem>>()
 
@@ -43,7 +43,7 @@ internal class HomeViewModel @Inject constructor(
 
     private fun loadContent() {
         compositeDisposable.add(
-            repository.getTrendingWeek()
+            getTrending()
                 .subscribe(
                     {
                         val movies = listOf(

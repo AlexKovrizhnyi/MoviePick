@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class TrendingDataSource @Inject constructor(
+internal class TrendingDataSource @Inject constructor(
     private val api: TmdbApi
 ) {
 
