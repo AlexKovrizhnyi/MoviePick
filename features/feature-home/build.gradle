@@ -45,6 +45,8 @@ dependencies {
     implementation Libraries.appCompat
     implementation Libraries.material
     implementation Libraries.fragmentKtx
+    implementation Libraries.paging
+    implementation Libraries.pagingRxJava
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler

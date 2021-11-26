@@ -45,6 +45,7 @@ object Libraries {
         const val lifecycle = "2.3.1"
         const val room = "2.3.0"
         const val material = "1.4.0"
+        const val paging = "3.1.0"
 
         // Network
         const val retrofit = "2.9.0"
@@ -73,6 +74,10 @@ object Libraries {
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
 
     const val material = "com.google.android.material:material:${Versions.material}"
+
+    // Paging
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
+    const val pagingRxJava = "androidx.paging:paging-rxjava3:${Versions.paging}"
 
     // Navigation
     const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
