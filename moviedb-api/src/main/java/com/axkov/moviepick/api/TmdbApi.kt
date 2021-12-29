@@ -1,5 +1,6 @@
 package com.axkov.moviepick.api
 
+import com.axkov.moviepick.api.services.MoviesService
 import retrofit2.Retrofit
 
 class TmdbApi(
@@ -17,7 +18,9 @@ class TmdbApi(
     val apiKey: String
         get() = apiKeyProvider.requireApiKey()
 
-    val trending: TrendingService by lazy { retrofit.create(TrendingService::class.java) }
-//    val popular by lazy { retrofit.create(PopularService::class.java)}
+    val moviesService: MoviesService by lazy { retrofit.create(MoviesService::class.java) }
 
+    enum class ApiType {
+        TRENDING, POPULAR, TOP_RATED, UPCOMING
+    }
 }

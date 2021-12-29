@@ -1,5 +1,7 @@
-package com.axkov.moviepick.api
+package com.axkov.moviepick.api.interceptors
 
+import com.axkov.moviepick.api.TmdbApi
+import com.axkov.moviepick.api.TmdbApiKeyProvider
 import okhttp3.Interceptor
 import okhttp3.Response
 

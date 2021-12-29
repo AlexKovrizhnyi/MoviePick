@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':moviedb-api')
     implementation project(':features:feature-home')
 
     implementation Libraries.kotlinStdLib

@@ -2,7 +2,7 @@ package com.axkov.moviepick.core.di
 
 import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.api.TmdbApiKeyProvider
-import com.axkov.moviepick.api.TmdbInterceptor
+import com.axkov.moviepick.api.interceptors.TmdbInterceptor
 import com.axkov.moviepick.core.BuildConfig
 import com.axkov.moviepick.core.di.annotations.AppScope
 import dagger.Module

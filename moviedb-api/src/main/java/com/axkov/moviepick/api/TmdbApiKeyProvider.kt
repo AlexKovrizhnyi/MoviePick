@@ -10,5 +10,5 @@ abstract class TmdbApiKeyProvider(
     /**
      * Returns the Movie Database Api key, if the [apiKey] is null throws an [IllegalStateException]
      */
-    fun requireApiKey(): String = checkNotNull(apiKey)
+    fun requireApiKey(): String = checkNotNull(apiKey) { "Api key isn't provided." }
 }
