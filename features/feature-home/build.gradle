@@ -29,6 +29,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
+        // TODO: When using this OptIn annotation, make sure that
+        //  in your app's build.gradle file you have
+        //  freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"] in your kotlinOptions.
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
     }
 
     buildFeatures {
