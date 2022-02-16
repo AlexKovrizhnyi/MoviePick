@@ -89,6 +89,7 @@ object Libraries {
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
 
     // Room
+    const val roomCommon = "androidx.room:room-common:${Versions.room}"
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomRxJava = "androidx.room:room-rxjava3:${Versions.room}"
