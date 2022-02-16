@@ -1,127 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/baseBlack"
     tools:background="@color/baseBlack"
-    tools:context="com.axkov.moviepick.features.home.ui.HomeFragment">
+    tools:context="com.axkov.moviepick.features.home.ui.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollViewContainer"
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:overScrollMode="never"
+        android:layout_height="match_parent"
         android:scrollbars="none"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- Popular movies -->
+            <!-- Popular -->
             <TextView
-                android:id="@+id/tvPopularMovies"
+                android:id="@+id/tvPopular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/category_popular"
                 android:textColor="@color/categoryTitleText"
                 android:textSize="24sp"
-                android:text="Popular"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Popular"/>
+                tools:text="Popular" />
+
+            <TextView
+                android:id="@+id/tvShowMorePopular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/category_show_more"
+                android:textColor="@color/categoryTitleText"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward"
+                app:layout_constraintBottom_toTopOf="@id/rvPopularMovies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvPopular" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopularMovies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
-                android:clipToPadding="false"
+                android:paddingBottom="2dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPopularMovies"
+                app:layout_constraintTop_toBottomOf="@id/tvPopular"
                 tools:listitem="@layout/item_movie" />
 
-            <!-- Top rated movies -->
+            <!-- Top rated -->
             <TextView
-                android:id="@+id/tvTopRatedMovies"
+                android:id="@+id/tvTopRated"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/category_top_rated"
                 android:textColor="@color/categoryTitleText"
                 android:textSize="24sp"
-                android:text="Top rated"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvPopularMovies"
-                tools:text="Top rated"/>
+                tools:text="Top rated" />
+
+            <TextView
+                android:id="@+id/tvShowMoreTopRated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/category_show_more"
+                android:textColor="@color/categoryTitleText"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward"
+                app:layout_constraintBottom_toTopOf="@id/rvTopRatedMovies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvTopRated" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTopRatedMovie"
+                android:id="@+id/rvTopRatedMovies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
-                android:clipToPadding="false"
+                android:paddingBottom="2dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTopRatedMovies"
+                app:layout_constraintTop_toBottomOf="@id/tvTopRated"
                 tools:listitem="@layout/item_movie" />
 
-            <!-- Ongoing movies -->
+            <!-- Upcoming -->
             <TextView
-                android:id="@+id/tvUpcomingMovies"
+                android:id="@+id/tvUpcoming"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif-medium"
+                android:text="@string/category_upcoming"
                 android:textColor="@color/categoryTitleText"
                 android:textSize="24sp"
-                android:text="Upcoming"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvTopRatedMovie"
-                tools:text="Upcoming"/>
+                app:layout_constraintTop_toBottomOf="@id/rvTopRatedMovies"
+                tools:text="Upcoming" />
+
+            <TextView
+                android:id="@+id/tvShowMoreUpcoming"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/category_show_more"
+                android:textColor="@color/categoryTitleText"
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_forward"
+                app:layout_constraintBottom_toTopOf="@id/rvUpcomingMovies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvUpcoming" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvUpcomingMovies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:paddingBottom="8dp"
-                android:clipToPadding="false"
+                android:paddingBottom="2dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUpcomingMovies"
+                app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
                 tools:listitem="@layout/item_movie" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        layout="@layout/loading_layout"
+        android:visibility="gone"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

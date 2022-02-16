@@ -1,18 +1,20 @@
-package com.axkov.moviepick.features.home.ui
+package com.axkov.moviepick.features.home.ui.home
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.get
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.axkov.moviepick.core.ui.viewModel
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.FragmentHomeScreenBinding
 import com.axkov.moviepick.features.home.di.HomeComponent
 import com.axkov.moviepick.features.home.di.HomeComponentHolder
-import com.axkov.moviepick.features.home.ui.adapters.MovieAdapter
+import com.axkov.moviepick.features.home.ui.home.adapters.MovieAdapter
 
 class HomeFragment : Fragment(R.layout.fragment_home_screen) {
 
@@ -27,7 +29,7 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
     private var upcomingAdapter: MovieAdapter? = null
 
     override fun onAttach(context: Context) {
-        diComponent = ViewModelProvider(this)
+        diComponent = ViewModelProvider(activity as ViewModelStoreOwner)
             .get<HomeComponentHolder>().homeComponent
 
         super.onAttach(context)
@@ -42,37 +44,24 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
     }
 
     private fun initUi() {
+
+        binding.tvShowMorePopular.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+        }
+
         popularAdapter = MovieAdapter()
         topRatedAdapter = MovieAdapter()
         upcomingAdapter = MovieAdapter()
 
-        binding.rvPopularMovies.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = popularAdapter
-        }
-
-        binding.rvTopRatedMovie.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = topRatedAdapter
-        }
-
-        binding.rvUpcomingMovies.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = upcomingAdapter
-        }
+        binding.rvPopularMovies.adapter = popularAdapter
+        binding.rvTopRatedMovies.adapter = popularAdapter
+        binding.rvUpcomingMovies.adapter = popularAdapter
 
         viewModel.popular.observe(viewLifecycleOwner) {
-            popularAdapter?.submitData(lifecycle, it)
+            popularAdapter?.submitList(it)
+            topRatedAdapter?.submitList(it)
+            upcomingAdapter?.submitList(it)
         }
-
-        viewModel.topRated.observe(viewLifecycleOwner) {
-            topRatedAdapter?.submitData(lifecycle, it)
-        }
-
-        viewModel.upcoming.observe(viewLifecycleOwner) {
-            upcomingAdapter?.submitData(lifecycle, it)
-        }
-
     }
 
     private fun destroyAdapters() {

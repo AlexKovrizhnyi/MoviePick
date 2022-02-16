@@ -9,7 +9,7 @@
     tools:background="@color/baseBlack">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/item_movie_cv_poster"
+        android:id="@+id/cvItemMoviePosterContainer"
         android:layout_width="@dimen/movie_card_width"
         android:layout_height="@dimen/movie_card_height"
         app:cardCornerRadius="@dimen/movie_card_rounded_corners"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_movie_iv_poster"
+            android:id="@+id/ivItemMoviePoster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:background="@color/placeholder"
@@ -27,7 +27,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/item_movie_tv_title"
+        android:id="@+id/tvItemMovieTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -39,7 +39,7 @@
         android:ellipsize="end"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_movie_cv_poster"
+        app:layout_constraintTop_toBottomOf="@id/cvItemMoviePosterContainer"
         tools:text="Movie title"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

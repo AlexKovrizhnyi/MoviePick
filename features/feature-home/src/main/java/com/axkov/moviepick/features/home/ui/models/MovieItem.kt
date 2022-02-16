@@ -1,7 +1,8 @@
 package com.axkov.moviepick.features.home.ui.models
 
 internal data class MovieItem(
-    val itemId: Long,
+    override val itemId: Long,
     val title: String,
+    val overview: String,
     val poster: String?
-)
+) : ListItem

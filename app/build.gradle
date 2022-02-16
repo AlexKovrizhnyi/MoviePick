@@ -43,9 +43,6 @@ dependencies {
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
 
-    implementation Libraries.navigation
-    implementation Libraries.navigationUi
-
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 

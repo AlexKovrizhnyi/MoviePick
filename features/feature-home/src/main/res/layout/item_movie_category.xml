@@ -4,37 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:padding="8dp"
     tools:background="@color/baseBlack">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvItemMovieCategoryPosterContainer"
+        android:layout_width="@dimen/movie_card_width"
+        android:layout_height="@dimen/movie_card_height"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="@dimen/movie_card_rounded_corners"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivItemMovieCategoryPoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/placeholder"
+            tools:ignore="ContentDescription" />
+    </androidx.cardview.widget.CardView>
+
     <TextView
-        android:id="@+id/tv_category_title"
+        android:id="@+id/tvItemMovieCategoryTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="sans-serif-medium"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="2"
         android:textColor="@color/categoryTitleText"
-        android:textSize="24sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ongoing" />
+        app:layout_constraintStart_toEndOf="@id/cvItemMovieCategoryPosterContainer"
+        app:layout_constraintTop_toTopOf="@id/cvItemMovieCategoryPosterContainer"
+        tools:text="Movie title" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_recycler_view"
+    <RatingBar
+        android:id="@+id/rbItemMovieCategoryRating"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:isIndicator="true"
+        android:rating="3.5"
+        app:layout_constraintStart_toStartOf="@id/tvItemMovieCategoryTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvItemMovieCategoryTitle" />
+
+    <TextView
+        android:id="@+id/tvItemMovieCategoryVoteCount"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textSize="12sp"
+        android:textColor="@color/categoryListOverviewText"
+        app:layout_constraintStart_toEndOf="@id/rbItemMovieCategoryRating"
+        app:layout_constraintTop_toTopOf="@id/rbItemMovieCategoryRating"
+        tools:text="1.6k"/>
+
+    <TextView
+        android:id="@+id/tvItemMovieCategoryGenres"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="2dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Action | Crime"
+        android:textColor="@color/categoryListOverviewText"
+        app:layout_constraintStart_toStartOf="@id/rbItemMovieCategoryRating"
+        app:layout_constraintTop_toBottomOf="@id/rbItemMovieCategoryRating"
+        tools:text="Action | Crime" />
+
+    <TextView
+        android:id="@+id/tvItemMovieCategoryOverview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:textColor="@color/categoryListOverviewText"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/cvItemMovieCategoryPosterContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_category_title"
-        tools:listitem="@layout/item_movie" />
+        app:layout_constraintStart_toStartOf="@id/tvItemMovieCategoryTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvItemMovieCategoryGenres"
+        tools:text="@tools:sample/lorem/random" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

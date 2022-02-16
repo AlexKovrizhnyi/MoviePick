@@ -46,15 +46,19 @@ dependencies {
     implementation Libraries.liveData
     implementation Libraries.viewModel
 
+    api Libraries.navigation
+    api Libraries.navigationUi
+
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 
     implementation Libraries.rxJava
+    implementation Libraries.rxAndroid
 
-    implementation Libraries.retrofit
-    implementation Libraries.okHttpLoggingInterceptor
-    implementation Libraries.adapterRxJava
-    implementation Libraries.converterGson
+    api Libraries.retrofit
+    api Libraries.okHttpLoggingInterceptor
+    api Libraries.adapterRxJava
+    api Libraries.converterGson
 
     api Libraries.timber
 

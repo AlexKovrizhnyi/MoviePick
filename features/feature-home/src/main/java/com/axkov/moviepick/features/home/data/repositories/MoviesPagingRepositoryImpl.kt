@@ -8,14 +8,14 @@ import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.core.di.annotations.FeatureScope
 import com.axkov.moviepick.domain.models.Movie
 import com.axkov.moviepick.features.home.data.sources.remote.MoviesPagingSource
-import com.axkov.moviepick.features.home.domain.repositories.MoviePagingRepository
+import com.axkov.moviepick.features.home.domain.repositories.MoviesPagingRepository
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 @FeatureScope
 internal class MoviesPagingRepositoryImpl @Inject constructor(
     private val api: TmdbApi
-) : MoviePagingRepository {
+) : MoviesPagingRepository {
 
     override fun getTrendingMovies(): Observable<PagingData<Movie>> =
         getMovies(TmdbApi.ApiType.TRENDING)
@@ -41,7 +41,7 @@ internal class MoviesPagingRepositoryImpl @Inject constructor(
         maxSize: Int = DEFAULT_MAX_SIZE,
         initialLoadSize: Int = DEFAULT_INITIAL_LOAD_SIZE,
         prefetchDistance: Int = DEFAULT_PREFETCH_DISTANCE,
-        enablePlaceholders: Boolean = false
+        enablePlaceholders: Boolean = true
     ): PagingConfig =
         PagingConfig(
             pageSize = pageSize,

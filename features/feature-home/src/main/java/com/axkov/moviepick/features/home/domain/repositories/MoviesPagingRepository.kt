@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import com.axkov.moviepick.domain.models.Movie
 import io.reactivex.rxjava3.core.Observable
 
-interface MoviePagingRepository {
+interface MoviesPagingRepository {
 
     fun getTrendingMovies(): Observable<PagingData<Movie>>
 

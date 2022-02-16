@@ -1,7 +1,6 @@
 package com.axkov.moviepick.features.home.ui.models.mappers
 
 import com.axkov.moviepick.domain.models.Movie
-import com.axkov.moviepick.core.utils.mappers.Mapper
 import com.axkov.moviepick.features.home.ui.models.MovieItem
 
 //internal class MovieToMovieItem: Mapper<Movie, MovieItem> {
@@ -17,5 +16,6 @@ import com.axkov.moviepick.features.home.ui.models.MovieItem
 internal fun Movie.toMovieItem() = MovieItem(
     itemId = id,
     title = title,
-    poster = poster
+    overview = overview,
+    poster = posterPath
 )
