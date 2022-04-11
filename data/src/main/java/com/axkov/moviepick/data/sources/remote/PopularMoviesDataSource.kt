@@ -2,10 +2,9 @@ package com.axkov.moviepick.data.sources.remote
 
 import android.accounts.NetworkErrorException
 import com.axkov.moviepick.api.TmdbApi
+import com.axkov.moviepick.api.models.MovieDto
 import com.axkov.moviepick.core.data.Result
 import com.axkov.moviepick.core.di.annotations.FeatureScope
-import com.axkov.moviepick.core.utils.mappers.toMovie
-import com.axkov.moviepick.domain.models.Movie
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.HttpException
@@ -17,16 +16,11 @@ class PopularMoviesDataSource @Inject constructor(
     private val api: TmdbApi
 ) {
 
-    fun getPopularMovies(page: Int): Single<Result<List<Movie>>> {
-
+    fun getPopularMovies(page: Int): Single<Result<List<MovieDto>>> {
         return api.moviesService.fetchPopularMovies(page)
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(Schedulers.io()) // TODO: Replace to scheduler interface for better testability
             .map {
-                it.results.map { movieDto -> movieDto.toMovie() }
-            }
-            .map {
-                Result.Success(it) as Result<List<Movie>>
-            }
+                Result.Success(it.results) as Result<List<MovieDto>> }
             .onErrorReturn { error ->
                 val errorMessage = StringBuilder()
 
@@ -41,8 +35,5 @@ class PopularMoviesDataSource @Inject constructor(
 
                 Result.Failure(NetworkErrorException(errorMessage.toString(), error))
             }
-//            .onErrorReturnItem(Result.Failure(NetworkErrorException("Server doesn't respond.")))
-
-
     }
 }

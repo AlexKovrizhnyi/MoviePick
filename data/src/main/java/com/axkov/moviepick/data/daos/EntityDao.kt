@@ -1,0 +1,27 @@
+package com.axkov.moviepick.data.daos
+
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Update
+import com.axkov.moviepick.data.entities.MoviePickEntity
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Maybe
+
+abstract class EntityDao<in E: MoviePickEntity> {
+
+    @Insert
+    abstract fun insert(entity: E): Maybe<Long>
+
+    @Insert
+    abstract fun insertAll(vararg entity: E): Completable
+
+    @Insert
+    abstract fun insertAll(entities: List<E>): Completable
+
+    @Update
+    abstract fun update(entity: E): Completable
+
+    @Delete
+    abstract fun deleteEntity(entity: E): Completable
+
+}

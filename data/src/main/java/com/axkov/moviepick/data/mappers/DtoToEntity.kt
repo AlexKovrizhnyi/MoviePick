@@ -1,16 +1,15 @@
-package com.axkov.moviepick.data
+package com.axkov.moviepick.data.mappers
 
 import com.axkov.moviepick.api.models.MovieDto
 import com.axkov.moviepick.data.entities.MovieEntity
 
-internal fun MovieDto.toEntity(category: String? = null) = MovieEntity(
-    tmdbId = this.id,
-    title = this.title,
-    originalTitle = this.originalTitle,
-    category = category,
-    overview = this.overview,
-    posterPath = this.posterPath,
-//    runtime = this.runtime,
-    voteCount = this.voteCount,
-    voteAverage = this.voteAverage
+internal fun MovieDto.toEntity() = MovieEntity(
+    tmdbId = id,
+    title = title,
+    originalTitle = originalTitle,
+    overview = overview,
+    posterPath = posterPath,
+//    runtime = runtime,
+    voteCount = voteCount,
+    voteAverage = voteAverage
 )
