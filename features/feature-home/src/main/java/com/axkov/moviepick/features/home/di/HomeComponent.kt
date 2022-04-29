@@ -21,9 +21,11 @@ internal interface HomeComponent {
 
     val homeViewModel: HomeViewModel
 
-    val categoryViewModel: CategoryViewModel
+//    val categoryViewModel: CategoryViewModel
 
-    fun inject(fragment: HomeFragment)
+    val categoryViewModelFactory: CategoryViewModel.Factory
+
+//    fun inject(fragment: HomeFragment)
 }
 
 interface HomeDependencies {

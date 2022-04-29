@@ -56,6 +56,8 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
             viewModel.handleAction(HomeViewAction.OnShowMoreCategoryClick(MoviesCategory.POPULAR))
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.handleAction(HomeViewAction.Refresh) }
+
         popularAdapter = MovieAdapter()
         topRatedAdapter = MovieAdapter()
         upcomingAdapter = MovieAdapter()
@@ -63,8 +65,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
         binding.rvPopularMovies.adapter = popularAdapter
         binding.rvTopRatedMovies.adapter = topRatedAdapter
         binding.rvUpcomingMovies.adapter = upcomingAdapter
-
-        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.handleAction(HomeViewAction.Refresh) }
 
         compositeDisposable.add(
             viewModel.uiEvent.subscribe(::handleEvent)

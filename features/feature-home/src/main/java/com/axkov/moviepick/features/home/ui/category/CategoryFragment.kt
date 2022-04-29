@@ -13,24 +13,25 @@ import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.FragmentCategoryBinding
 import com.axkov.moviepick.features.home.di.HomeComponent
 import com.axkov.moviepick.features.home.di.HomeComponentHolder
-import timber.log.Timber
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
 
-    val args: CategoryFragmentArgs by navArgs()
+    private val args: CategoryFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentCategoryBinding
 
     private lateinit var diComponent: HomeComponent
 
-    // TODO: Pass category to the viewModel
-    private val viewModel: CategoryViewModel by viewModel { diComponent.categoryViewModel }
+    private lateinit var viewModelFactory: CategoryViewModel.Factory
+
+    private val viewModel: CategoryViewModel by viewModel { viewModelFactory.create(args.category) }
 
     private var moviePagingAdapter: MoviePagingAdapter? = null
 
     override fun onAttach(context: Context) {
         diComponent = ViewModelProvider(activity as ViewModelStoreOwner)
             .get<HomeComponentHolder>().homeComponent
+        viewModelFactory = diComponent.categoryViewModelFactory
 
         super.onAttach(context)
     }
@@ -47,10 +48,10 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
             adapter = moviePagingAdapter
         }
 
-        val moviesCategory = args.category
-        Timber.d("moviesCategory = $moviesCategory")
+//        val moviesCategory = args.category
+//        Timber.d("moviesCategory = $moviesCategory")
 
-        viewModel.category.observe(viewLifecycleOwner) {
+        viewModel.movies.observe(viewLifecycleOwner) {
             moviePagingAdapter?.submitData(lifecycle, it)
         }
 
