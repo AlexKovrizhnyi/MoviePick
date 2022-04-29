@@ -30,5 +30,15 @@ class MoviesStore @Inject constructor(
             )
     }
 
+//    fun observeForObservable(category: String, count: Int, offset: Int) =
+////        moviesDao.entriesObservable(category, count, offset)
+//        moviesDao.entriesObservable(category)
+//
+//    fun deleteAll() = moviesDao.deleteAll()
+//
+//    fun saveMovies(entities: List<MovieEntity>) {
+//        moviesDao.insertAll(entities)
+//    }
+
 
 }

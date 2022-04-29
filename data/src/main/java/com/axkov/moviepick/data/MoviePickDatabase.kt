@@ -7,7 +7,5 @@ interface MoviePickDatabase {
 
     fun popularMoviesDao(): PopularMoviesDao
 
-    // TODO: Temporary implementation
     fun moviesDao(): MoviesDao
-
 }

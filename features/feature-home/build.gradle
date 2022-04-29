@@ -53,6 +53,7 @@ dependencies {
     implementation Libraries.fragmentKtx
     implementation Libraries.paging
     implementation Libraries.pagingRxJava
+    implementation Libraries.swipeRefreshLayout
 
     implementation Libraries.roomRuntime
 

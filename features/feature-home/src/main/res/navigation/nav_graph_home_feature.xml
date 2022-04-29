@@ -10,13 +10,20 @@
         android:name="com.axkov.moviepick.features.home.ui.home.HomeFragment"
         android:label="fragment_home_screen"
         tools:layout="@layout/fragment_home_screen" >
+
         <action
             android:id="@+id/action_homeFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.axkov.moviepick.features.home.ui.category.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <argument
+            android:name="category"
+            app:argType="com.axkov.moviepick.domain.models.MoviesCategory"
+            android:defaultValue="POPULAR" />
+    </fragment>
 </navigation>

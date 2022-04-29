@@ -1,12 +1,10 @@
 package com.axkov.moviepick.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.axkov.moviepick.app.R
 
 class MainActivity : AppCompatActivity() {
     private var _navController: NavController? = null
@@ -22,10 +20,19 @@ class MainActivity : AppCompatActivity() {
         _navController = navHostFragment.navController
 
 //        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun setupBottomNavMenu(navController: NavController) {
+//        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+//        bottomNav?.setupWithNavController(navController)
+    }
+
+    private fun setupActionBar(navController: NavController, appBarConfig: AppBarConfiguration) {
+        //        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

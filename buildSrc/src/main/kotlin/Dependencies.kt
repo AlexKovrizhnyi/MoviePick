@@ -46,6 +46,7 @@ object Libraries {
         const val room = "2.3.0"
         const val material = "1.4.0"
         const val paging = "3.1.0"
+        const val swipeRefreshLayout = "1.1.0"
 
         // Network
         const val retrofit = "2.9.0"
@@ -72,6 +73,7 @@ object Libraries {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 
     const val material = "com.google.android.material:material:${Versions.material}"
 

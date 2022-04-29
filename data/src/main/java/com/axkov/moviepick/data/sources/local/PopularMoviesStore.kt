@@ -9,7 +9,6 @@ class PopularMoviesStore @Inject constructor(
     private val popularMoviesDao: PopularMoviesDao
 ) {
 
-    // TODO: delete category parameter
     fun observeForObservable(count: Int, offset: Int) =
         popularMoviesDao.entriesObservable(count, offset)
 

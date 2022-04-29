@@ -56,7 +56,21 @@ class PopularMoviesRepositoryImpl @Inject constructor(
                                 popularMoviesStore.updatePopularMoviesPage(page, it)
                             }
 
-                        Completable.complete()
+
+//                        result.data.map { it.toEntity() }
+//                            .let { entities ->
+//                                val entries = entities.mapIndexed { index, entity ->
+//                                    val movieId = moviesStore.getIdOrSave(entity)
+////                                        .subscribeOn(Schedulers.io())
+//                                        .blockingGet()
+//                                    PopularMovieEntry(
+//                                        movieId = movieId,
+//                                        page = page,
+//                                        pageOrder = index
+//                                    )
+//                                }
+//                                popularMoviesStore.updatePopularMoviesPage(page, entries)
+//                            }
                     }
                     is Result.Failure -> {
                         Completable.error(result.throwable)
