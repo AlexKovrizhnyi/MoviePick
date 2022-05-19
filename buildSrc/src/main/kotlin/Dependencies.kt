@@ -1,5 +1,5 @@
 object Kotlin {
-    const val stdLib = "1.5.10"
+    const val stdLib = "1.6.21"
 }
 
 object AndroidSdk {
