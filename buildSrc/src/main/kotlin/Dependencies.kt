@@ -18,7 +18,7 @@ object AndroidClient {
 object BuildPlugins {
     object Versions {
         const val gradleVersion = "7.2.0"
-        const val navigation = "2.3.5"
+        const val navigation = "2.4.2"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.gradleVersion}"
@@ -41,7 +41,7 @@ object Libraries {
         const val appCompat = "1.3.1"
         const val fragmentKtx = "1.3.6"
         const val constraintLayout = "2.1.0"
-        const val navigation = "2.3.5"
+        const val navigation = "2.4.2"
         const val lifecycle = "2.3.1"
         const val room = "2.3.0"
         const val material = "1.4.0"
