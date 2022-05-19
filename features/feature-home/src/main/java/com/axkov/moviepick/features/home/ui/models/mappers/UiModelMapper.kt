@@ -1,6 +1,6 @@
 package com.axkov.moviepick.features.home.ui.models.mappers
 
-import com.axkov.moviepick.domain.models.Movie
+import com.axkov.moviepick.core.domain.models.Movie
 import com.axkov.moviepick.features.home.ui.models.MovieItem
 
 //internal class MovieToMovieItem: Mapper<Movie, MovieItem> {

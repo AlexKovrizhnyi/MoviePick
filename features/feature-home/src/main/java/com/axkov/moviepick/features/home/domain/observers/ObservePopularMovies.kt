@@ -1,8 +1,8 @@
-package com.axkov.moviepick.domain.observers
+package com.axkov.moviepick.features.home.domain.observers
 
-import com.axkov.moviepick.domain.SubjectUseCase
-import com.axkov.moviepick.domain.models.Movie
-import com.axkov.moviepick.domain.repositories.PopularMoviesRepository
+import com.axkov.moviepick.core.domain.SubjectUseCase
+import com.axkov.moviepick.core.domain.models.Movie
+import com.axkov.moviepick.features.home.domain.repositories.PopularMoviesRepository
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 

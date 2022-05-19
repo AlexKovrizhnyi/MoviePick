@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.axkov.moviepick.core.ui.Event
-import com.axkov.moviepick.domain.observers.ObservePopularMovies
-import com.axkov.moviepick.domain.usecases.UpdatePopularMovies
+import com.axkov.moviepick.features.home.domain.observers.ObservePopularMovies
+import com.axkov.moviepick.features.home.domain.usecases.UpdatePopularMovies
 import com.axkov.moviepick.features.home.ui.models.mappers.toMovieItem
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -55,7 +55,6 @@ internal class HomeViewModel @Inject constructor(
 
                 }
         )
-
     }
 
     fun handleAction(event: HomeViewAction) {

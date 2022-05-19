@@ -46,7 +46,7 @@ android {
 
 dependencies {
     api project(":core")
-    api project(":domain")
+    api project(':core-domain')
     api project(":moviedb-api")
 
     api Libraries.roomCommon

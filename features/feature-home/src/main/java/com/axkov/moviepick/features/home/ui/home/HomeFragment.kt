@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
+import com.axkov.moviepick.core.domain.enums.MoviesCategory
 import com.axkov.moviepick.core.ui.Event
 import com.axkov.moviepick.core.ui.viewModel
-import com.axkov.moviepick.domain.models.MoviesCategory
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.FragmentHomeScreenBinding
 import com.axkov.moviepick.features.home.di.HomeComponent

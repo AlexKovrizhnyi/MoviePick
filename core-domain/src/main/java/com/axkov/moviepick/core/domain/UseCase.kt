@@ -1,4 +1,4 @@
-package com.axkov.moviepick.domain
+package com.axkov.moviepick.core.domain
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject

@@ -6,8 +6,8 @@ import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.api.models.MediaType
 import com.axkov.moviepick.api.models.MoviesResponsePage
 import com.axkov.moviepick.api.models.TimeWindow
-import com.axkov.moviepick.core.utils.mappers.toMovie
-import com.axkov.moviepick.domain.models.Movie
+import com.axkov.moviepick.core.domain.models.Movie
+import com.axkov.moviepick.data.mappers.toDomain
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -44,11 +44,8 @@ internal class MoviesPagingSource(
 
     private fun MoviesResponsePage.toLoadResultMoviesPage(page: Int): LoadResult<Int, Movie> =
         LoadResult.Page(
-            data = this.results.map { it.toMovie() },
+            data = this.results.map { it.toDomain() },
             prevKey = if (page == 1) null else page - 1,
             nextKey = if (page == this.totalPages) null else page + 1
         )
 }
-
-// Old implementation
-

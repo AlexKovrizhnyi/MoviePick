@@ -1,7 +1,7 @@
 package com.axkov.moviepick.features.home.di
 
-import com.axkov.moviepick.data.repositories.PopularMoviesRepositoryImpl
-import com.axkov.moviepick.domain.repositories.PopularMoviesRepository
+import com.axkov.moviepick.features.home.data.repositories.PopularMoviesRepositoryImpl
+import com.axkov.moviepick.features.home.domain.repositories.PopularMoviesRepository
 import com.axkov.moviepick.features.home.data.repositories.MoviesPagingRepositoryImpl
 import com.axkov.moviepick.features.home.domain.repositories.MoviesPagingRepository
 import dagger.Binds

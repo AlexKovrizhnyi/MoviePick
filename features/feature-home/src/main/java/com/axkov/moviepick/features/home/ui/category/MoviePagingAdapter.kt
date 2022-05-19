@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.axkov.moviepick.domain.models.Movie
+import com.axkov.moviepick.core.domain.models.Movie
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.ItemMovieCategoryBinding
 import com.bumptech.glide.Glide

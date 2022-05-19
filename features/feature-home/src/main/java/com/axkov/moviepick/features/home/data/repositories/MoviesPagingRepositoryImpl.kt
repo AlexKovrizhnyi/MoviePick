@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava3.observable
 import com.axkov.moviepick.api.TmdbApi
 import com.axkov.moviepick.core.di.annotations.FeatureScope
-import com.axkov.moviepick.domain.models.Movie
+import com.axkov.moviepick.core.domain.models.Movie
 import com.axkov.moviepick.features.home.data.sources.remote.MoviesPagingSource
 import com.axkov.moviepick.features.home.domain.repositories.MoviesPagingRepository
 import io.reactivex.rxjava3.core.Observable

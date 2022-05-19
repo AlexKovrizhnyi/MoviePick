@@ -39,7 +39,6 @@ android {
 
 dependencies {
     implementation project(':moviedb-api')
-    implementation project(':domain')
 
     implementation Libraries.coreKtx
     implementation Libraries.fragmentKtx

@@ -1,13 +1,13 @@
-package com.axkov.moviepick.domain.usecases
+package com.axkov.moviepick.features.home.domain.usecases
 
-import com.axkov.moviepick.domain.UseCase
-import com.axkov.moviepick.domain.repositories.PopularMoviesRepository
+import com.axkov.moviepick.core.domain.UseCase
+import com.axkov.moviepick.features.home.domain.repositories.PopularMoviesRepository
 import io.reactivex.rxjava3.core.Completable
 import javax.inject.Inject
 
 class UpdatePopularMovies @Inject constructor(
     private val popularMoviesRepository: PopularMoviesRepository
-): UseCase<UpdatePopularMovies.Params, Completable>() {
+) : UseCase<UpdatePopularMovies.Params, Completable>() {
 
     override fun doWork(params: Params): Completable {
         val page = when {

@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_category" >
         <argument
             android:name="category"
-            app:argType="com.axkov.moviepick.domain.models.MoviesCategory"
+            app:argType="com.axkov.moviepick.core.domain.enums.MoviesCategory"
             android:defaultValue="POPULAR" />
     </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.axkov.moviepick.domain.models
+package com.axkov.moviepick.core.domain.models
 
 data class Movie(
     val id: Long,
