@@ -32,7 +32,7 @@ internal class HomeViewModel @Inject constructor(
     val uiEvent: Observable<Event<HomeViewEvent>> = _eventSubject.hide()
 
     init {
-        observePopularMovies(ObservePopularMovies.Params(10))
+        observePopularMovies(ObservePopularMovies.Params(PAYLOAD))
 
         compositeDisposable.add(
             observePopularMovies.observe()
@@ -72,7 +72,7 @@ internal class HomeViewModel @Inject constructor(
     private fun refresh() {
 
         compositeDisposable.add(
-            updatePopularMovies(UpdatePopularMovies.Params(1))
+            updatePopularMovies(UpdatePopularMovies.Params(FIRST_PAGE))
                 .doOnSubscribe { _uiState.value = _uiState.value?.copy(isLoading = true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -89,5 +89,10 @@ internal class HomeViewModel @Inject constructor(
 
     override fun onCleared() {
         compositeDisposable.clear()
+    }
+
+    private companion object {
+        const val PAYLOAD = 10
+        const val FIRST_PAGE = 1
     }
 }

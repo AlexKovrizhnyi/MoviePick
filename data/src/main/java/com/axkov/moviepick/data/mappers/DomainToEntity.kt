@@ -1,7 +1,7 @@
 package com.axkov.moviepick.data.mappers
 
+import com.axkov.moviepick.core.domain.models.Movie
 import com.axkov.moviepick.data.entities.MovieEntity
-import com.axkov.moviepick.domain.models.Movie
 
 fun Movie.toEntity(): MovieEntity = MovieEntity(
     tmdbId = id,

@@ -1,7 +1,7 @@
 package com.axkov.moviepick.data.mappers
 
 import com.axkov.moviepick.api.models.MovieDto
-import com.axkov.moviepick.domain.models.Movie
+import com.axkov.moviepick.core.domain.models.Movie
 
 fun MovieDto.toDomain() = Movie(
     id = id,

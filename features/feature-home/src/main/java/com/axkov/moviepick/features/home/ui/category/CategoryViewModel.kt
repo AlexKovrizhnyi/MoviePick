@@ -54,4 +54,8 @@ internal class CategoryViewModel @AssistedInject constructor(
     interface Factory {
         fun create(category: MoviesCategory): CategoryViewModel
     }
+
+    override fun onCleared() {
+        compositeDisposable.clear()
+    }
 }

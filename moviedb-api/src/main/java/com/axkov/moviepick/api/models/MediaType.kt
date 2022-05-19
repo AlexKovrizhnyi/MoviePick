@@ -1,9 +1,9 @@
 package com.axkov.moviepick.api.models
 
-enum class MediaType(private val type: String) {
-    ALL("all"), MOVIE("movie"), TV("tv"), PERSON("person");
+enum class MediaType {
+    ALL, MOVIE, TV, PERSON;
 
     override fun toString(): String {
-        return type
+        return name.lowercase()
     }
 }
