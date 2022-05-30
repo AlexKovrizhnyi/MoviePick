@@ -56,6 +56,7 @@ object Libraries {
         // RxJava
         const val rxJava = "3.1.1"
         const val rxAndroid = "3.0.0"
+        const val rxKotlin = "3.0.1"
 
         // Dagger
         const val dagger = "2.38.1"
@@ -110,6 +111,7 @@ object Libraries {
     // RxJava 3
     const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"
     const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroid}"
+    const val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxKotlin}"
 
     // Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"

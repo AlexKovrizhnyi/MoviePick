@@ -62,6 +62,7 @@ dependencies {
 
     implementation Libraries.rxJava
     implementation Libraries.rxAndroid
+    implementation Libraries.rxKotlin
 
     implementation Libraries.glide
     kapt Libraries.glideCompiler
