@@ -20,10 +20,4 @@ abstract class PaginatedEntryDao<E : PaginatedEntry> : EntryDao<E>() {
     abstract fun deletePage(page: Int): Completable
 
     abstract fun getLastPage(): Maybe<Int>
-
-    //    @Transaction
-    open fun updatePage(page: Int, entities: List<E>): Completable {
-        return deletePage(page)
-            .andThen(insertAll(entities))
-    }
 }

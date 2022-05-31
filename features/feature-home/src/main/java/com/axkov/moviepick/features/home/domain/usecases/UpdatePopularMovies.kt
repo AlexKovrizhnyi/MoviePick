@@ -19,7 +19,8 @@ class UpdatePopularMovies @Inject constructor(
             else -> 1
         }
 
-        return popularMoviesRepository.updatePopularMovies(params.page)
+        // TODO: Implement resetOnSave
+        return popularMoviesRepository.updatePopularMovies(page, resetOnSave = false)
     }
 
     data class Params(val page: Int, val forceRefresh: Boolean = false)

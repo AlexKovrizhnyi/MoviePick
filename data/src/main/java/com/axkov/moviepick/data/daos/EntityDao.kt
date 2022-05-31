@@ -2,6 +2,7 @@ package com.axkov.moviepick.data.daos
 
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Update
 import com.axkov.moviepick.data.entities.MoviePickEntity
 import io.reactivex.rxjava3.core.Completable
@@ -9,7 +10,7 @@ import io.reactivex.rxjava3.core.Maybe
 
 abstract class EntityDao<in E: MoviePickEntity> {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(entity: E): Maybe<Long>
 
     @Insert
