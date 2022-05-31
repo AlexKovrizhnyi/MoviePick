@@ -8,5 +8,3 @@
     <color name="categoryTitleText">@color/baseWhite</color>
     <color name="placeholder">#FF4F4F4F</color>
 </resources>
-
-<!--TODO: Remove this color resource. Use color resource at core module-->
