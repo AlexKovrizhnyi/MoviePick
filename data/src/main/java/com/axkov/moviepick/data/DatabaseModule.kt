@@ -4,6 +4,10 @@ import android.content.Context
 import android.os.Debug
 import androidx.room.Room
 import com.axkov.moviepick.core.di.annotations.FeatureScope
+import com.axkov.moviepick.data.utils.DatabaseTransactionRunner
+import com.axkov.moviepick.data.utils.EntityInserter
+import com.axkov.moviepick.data.utils.MoviePickEntityInserter
+import com.axkov.moviepick.data.utils.RoomTransactionRunner
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -42,5 +46,15 @@ class DatabaseDaoModule {
 @Module
 abstract class DatabaseModuleBinds {
     @Binds
-    abstract fun bindMoviePickDatabase(context: MoviePickRoomDatabase): MoviePickDatabase
+    abstract fun bindMoviePickDatabase(db: MoviePickRoomDatabase): MoviePickDatabase
+
+//    @Singleton // TODO: Change DatabaseModule connection from HomeComponent to AppComponent and then
+    // change scope
+    @FeatureScope
+    @Binds
+    abstract fun bindEntityInserter(inserter: MoviePickEntityInserter): EntityInserter
+
+    @FeatureScope
+    @Binds
+    abstract fun bindTransactionRunner(runner: RoomTransactionRunner): DatabaseTransactionRunner
 }
