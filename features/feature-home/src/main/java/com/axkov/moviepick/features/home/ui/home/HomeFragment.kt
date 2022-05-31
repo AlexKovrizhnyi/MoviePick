@@ -10,14 +10,13 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.axkov.moviepick.core.domain.enums.MoviesCategory
-import com.axkov.moviepick.core.ui.Event
 import com.axkov.moviepick.core.ui.viewModel
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.FragmentHomeScreenBinding
 import com.axkov.moviepick.features.home.di.HomeComponent
 import com.axkov.moviepick.features.home.di.HomeComponentHolder
 import com.axkov.moviepick.features.home.ui.home.adapters.MovieAdapter
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(R.layout.fragment_home_screen) {
 
@@ -30,8 +29,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
     private var popularAdapter: MovieAdapter? = null
     private var topRatedAdapter: MovieAdapter? = null
     private var upcomingAdapter: MovieAdapter? = null
-
-    private val compositeDisposable = CompositeDisposable()
 
     override fun onAttach(context: Context) {
         diComponent = ViewModelProvider(activity as ViewModelStoreOwner)
@@ -52,11 +49,12 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
     private fun initUi() {
 
         binding.tvShowMorePopular.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
-            viewModel.handleAction(HomeViewAction.OnShowMoreCategoryClick(MoviesCategory.POPULAR))
+            val action =
+                HomeFragmentDirections.actionHomeFragmentToCategoryFragment(MoviesCategory.POPULAR)
+            findNavController().navigate(action)
         }
 
-        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.handleAction(HomeViewAction.Refresh) }
+        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.refresh() }
 
         popularAdapter = MovieAdapter()
         topRatedAdapter = MovieAdapter()
@@ -66,63 +64,27 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
         binding.rvTopRatedMovies.adapter = topRatedAdapter
         binding.rvUpcomingMovies.adapter = upcomingAdapter
 
-        compositeDisposable.add(
-            viewModel.uiEvent.subscribe(::handleEvent)
-        )
-//        viewModel.popular.observe(viewLifecycleOwner) {
-//            popularAdapter?.submitList(it)
-//            topRatedAdapter?.submitList(it)
-//            upcomingAdapter?.submitList(it)
-//        }
-
-//        viewModel.uiState.observe(viewLifecycleOwner) {
-//            renderViewState(it)
-//        }
-    }
-
-    private fun handleEvent(event: Event<HomeViewEvent>) {
-        when (val specificEvent = event.getContentIfNotHandled()) {
-            is HomeViewEvent.ShowToast -> showToast(specificEvent.message)
-            is HomeViewEvent.NavigateToCategory -> {
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToCategoryFragment(specificEvent.category)
-                findNavController().navigate(action)
-            }
-            HomeViewEvent.NavigateToDetails -> TODO("Implement `navigate to details` event")
-            is HomeViewEvent.ShowSnackBar -> TODO("Implement `show snackbar` event")
-            null -> TODO()
-        }
     }
 
     private fun observeData() {
         viewModel.uiState.observe(viewLifecycleOwner) {
             renderViewState(it)
         }
-
-//        viewModel.uiState.map { it.isLoading }
-//            .distinctUntilChanged()
-//            .observe(viewLifecycleOwner, Observer {
-//                showLoading(it)
-//            })
     }
 
     private fun renderViewState(state: HomeViewState) {
-//        if (state.isLoading) {
-//            // ver. 2
-//            showLoading(true)
-//            return
-
-//            // ver. 1
-//            binding.loading.loadingContainer.visibility = View.VISIBLE
-//            return
-//        }
-//        binding.loading.loadingContainer.visibility = View.GONE
-
-        showLoading(state.isLoading)
+        showLoading(state)
 
         popularAdapter?.submitList(state.popularItems)
         topRatedAdapter?.submitList(state.topRatedItems)
         upcomingAdapter?.submitList(state.upcomingItems)
+
+        if (state.messages.isNotEmpty()) {
+            state.messages.firstOrNull()?.let {
+                showSnackBar(it.message)
+                viewModel.messageShown(it.id)
+            }
+        }
     }
 
     private fun destroyAdapters() {
@@ -135,15 +97,10 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
         super.onDestroyView()
 
         destroyAdapters()
-        compositeDisposable.clear()
     }
 
-    //    private fun showError(errorMessage: String) {
-//        Timber.e("An error occurred: $errorMessage")
-//    }
-//
-    private fun showLoading(isLoading: Boolean) {
-        binding.loading.loadingContainer.visibility = if (isLoading) View.VISIBLE else View.GONE
+    private fun showLoading(state: HomeViewState) {
+        val isLoading = state.popularLoading || state.topRatedLoading || state.upcomingLoading
 
         binding.swipeRefreshLayout.isRefreshing = isLoading
     }
@@ -153,6 +110,6 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
     }
 
     private fun showSnackBar(message: String) {
-//        Snackbar.make(context, message, Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 }

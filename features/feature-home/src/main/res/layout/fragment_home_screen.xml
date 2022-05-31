@@ -167,7 +167,7 @@
 
     <include
         android:id="@+id/loading"
-        layout="@layout/loading_layout"
-        tools:visibility="gone" />
+        layout="@layout/layout_loading"
+        tools:visibility="visible" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
