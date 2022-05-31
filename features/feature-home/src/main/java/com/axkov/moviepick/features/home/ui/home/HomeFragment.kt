@@ -68,16 +68,16 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
 
     private fun observeData() {
         viewModel.uiState.observe(viewLifecycleOwner) {
-            renderViewState(it)
+            renderState(it)
         }
     }
 
-    private fun renderViewState(state: HomeViewState) {
-        showLoading(state)
+    private fun renderState(state: HomeViewState) {
+        showLoadingState(state)
 
-        popularAdapter?.submitList(state.popularItems)
-        topRatedAdapter?.submitList(state.topRatedItems)
-        upcomingAdapter?.submitList(state.upcomingItems)
+        popularAdapter?.submitList(state.popular.items)
+        topRatedAdapter?.submitList(state.topRated.items)
+        upcomingAdapter?.submitList(state.upcoming.items)
 
         if (state.messages.isNotEmpty()) {
             state.messages.firstOrNull()?.let {
@@ -99,8 +99,10 @@ class HomeFragment : Fragment(R.layout.fragment_home_screen) {
         destroyAdapters()
     }
 
-    private fun showLoading(state: HomeViewState) {
-        val isLoading = state.popularLoading || state.topRatedLoading || state.upcomingLoading
+    private fun showLoadingState(state: HomeViewState) {
+        val isLoading = state.popular.loading
+                || state.topRated.loading
+                || state.upcoming.loading
 
         binding.swipeRefreshLayout.isRefreshing = isLoading
     }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.axkov.moviepick.core.data.Data
+import com.axkov.moviepick.core.domain.enums.MoviesCategory
 import com.axkov.moviepick.core.domain.models.Movie
 import com.axkov.moviepick.core.ui.UiMessage
 import com.axkov.moviepick.features.home.domain.observers.ObservePopularMovies
@@ -32,9 +33,11 @@ internal class HomeViewModel @Inject constructor(
     private val shownMessages = BehaviorSubject.create<Long>()
 
     private val stateReducer =
-        BiFunction { prevState: HomeViewState, partialChanges: PartialStateChanges ->
+        BiFunction { prevState: HomeViewState, partialChanges: PartState ->
+
             return@BiFunction when (partialChanges) {
-                is PartialStateChanges.MessageShown -> {
+
+                is PartState.MessageShown -> {
                     val messages =
                         prevState.messages.filterNot { it.id == partialChanges.messageId }
                     prevState.copy(
@@ -42,34 +45,26 @@ internal class HomeViewModel @Inject constructor(
                     )
                 }
 
-                PartialStateChanges.PopularMoviesLoading -> prevState.copy(
-                    popularLoading = true
-                )
+                is PartState.MoviesError -> {
+                    prevState
+                        .updateCategory(partialChanges.category, loading = false)
+                        .copy(messages = prevState.messages + partialChanges.message)
+                }
 
-                is PartialStateChanges.PopularMoviesError -> prevState.copy(
-                    messages = prevState.messages + partialChanges.message,
-                    popularLoading = false
-                )
+                is PartState.MoviesLoaded -> {
+                    prevState.updateCategory(
+                        partialChanges.category,
+                        items = partialChanges.content,
+                        loading = false
+                    )
+                }
 
-                is PartialStateChanges.PopularMoviesLoaded -> prevState.copy(
-                    popularItems = partialChanges.content,
-                    popularLoading = false
-                )
-
-
-                PartialStateChanges.TopRatedMoviesLoading -> prevState.copy(
-                    topRatedLoading = true
-                )
-
-                is PartialStateChanges.TopRatedMoviesError -> prevState.copy(
-                    messages = prevState.messages + partialChanges.message,
-                    topRatedLoading = false
-                )
-
-                is PartialStateChanges.TopRatedMoviesLoaded -> prevState.copy(
-                    topRatedItems = partialChanges.content,
-                    topRatedLoading = false
-                )
+                is PartState.MoviesLoading -> {
+                    prevState.updateCategory(
+                        partialChanges.category,
+                        loading = true
+                    )
+                }
             }
         }
 
@@ -80,15 +75,9 @@ internal class HomeViewModel @Inject constructor(
 
         val popularObservable = originPopularObservable.map { data ->
             when (data) {
-                is Data.Failure -> {
-                    PartialStateChanges.PopularMoviesError(UiMessage(data.error))
-                }
-                Data.Loading -> {
-                    PartialStateChanges.PopularMoviesLoading
-                }
-                is Data.Success -> {
-                    PartialStateChanges.PopularMoviesLoaded(data.content.map { it.toMovieItem() })
-                }
+                is Data.Failure -> PartState.MoviesError(MoviesCategory.POPULAR, UiMessage(data.error))
+                Data.Loading -> PartState.MoviesLoading(MoviesCategory.POPULAR)
+                is Data.Success -> PartState.MoviesLoaded(MoviesCategory.POPULAR, data.content.map { it.toMovieItem() })
             }
         }
 
@@ -98,20 +87,14 @@ internal class HomeViewModel @Inject constructor(
 //            originPopularObservable
                 .map { data ->
                     when (data) {
-                        is Data.Failure -> {
-                            PartialStateChanges.TopRatedMoviesError(UiMessage(data.error))
-                        }
-                        Data.Loading -> {
-                            PartialStateChanges.TopRatedMoviesLoading
-                        }
-                        is Data.Success -> {
-                            PartialStateChanges.TopRatedMoviesLoaded(data.content.map { it.toMovieItem() })
-                        }
+                        is Data.Failure -> PartState.MoviesError(MoviesCategory.TOP_RATED, UiMessage(data.error))
+                        Data.Loading -> PartState.MoviesLoading(MoviesCategory.TOP_RATED)
+                        is Data.Success -> PartState.MoviesLoaded(MoviesCategory.TOP_RATED, data.content.map { it.toMovieItem() })
                     }
                 }
 
         val partStateMessageShown = shownMessages.map {
-            PartialStateChanges.MessageShown(it)
+            PartState.MessageShown(it)
         }
 
         Observable.merge(popularObservable, topRatedObservable, partStateMessageShown)

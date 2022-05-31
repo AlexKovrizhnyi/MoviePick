@@ -1,32 +1,71 @@
 package com.axkov.moviepick.features.home.ui.home
 
+import com.axkov.moviepick.core.domain.enums.MoviesCategory
 import com.axkov.moviepick.core.ui.UiMessage
 import com.axkov.moviepick.features.home.ui.models.ListItem
 import com.axkov.moviepick.features.home.ui.models.MovieItem
 
 internal data class HomeViewState(
-    val popularItems: List<ListItem> = listOf(),
-    val topRatedItems: List<ListItem> = listOf(),
-    val upcomingItems: List<ListItem> = listOf(),
-    val popularLoading: Boolean = false,
-    val topRatedLoading: Boolean = false,
-    val upcomingLoading: Boolean = false,
+    val popular: CategoryState = CategoryState(MoviesCategory.POPULAR),
+    val topRated: CategoryState = CategoryState(MoviesCategory.TOP_RATED),
+    val upcoming: CategoryState = CategoryState(MoviesCategory.UPCOMING),
     val messages: List<UiMessage> = listOf()
+) {
+
+    fun updateCategory(
+        category: MoviesCategory,
+        items: List<MovieItem>? = null,
+        loading: Boolean,
+    ): HomeViewState {
+
+        return when (category) {
+            MoviesCategory.POPULAR -> {
+                this.copy(
+                    popular = popular.copy(
+                        items = items ?: popular.items,
+                        loading = loading
+                    )
+                )
+            }
+            MoviesCategory.TOP_RATED -> {
+                this.copy(
+                    topRated = topRated.copy(
+                        items = items ?: topRated.items,
+                        loading = loading
+                    )
+                )
+            }
+            MoviesCategory.UPCOMING -> {
+                this.copy(
+                    upcoming = upcoming.copy(
+                        items = items ?: upcoming.items,
+                        loading = loading
+                    )
+                )
+            }
+        }
+    }
+}
+
+internal data class CategoryState(
+    val category: MoviesCategory,
+    val items: List<ListItem> = listOf(),
+    val loading: Boolean = false
 )
 
-internal sealed interface PartialStateChanges {
-    data class MessageShown(val messageId: Long) : PartialStateChanges
+internal sealed interface PartState {
 
-    object PopularMoviesLoading : PartialStateChanges
+    data class MessageShown(val messageId: Long) : PartState
 
-    data class PopularMoviesError(val message: UiMessage) : PartialStateChanges
+    data class MoviesLoading(val category: MoviesCategory) : PartState
 
-    data class PopularMoviesLoaded(val content: List<MovieItem>) : PartialStateChanges
+    data class MoviesError(
+        val category: MoviesCategory,
+        val message: UiMessage
+    ) : PartState
 
-    object TopRatedMoviesLoading : PartialStateChanges
-
-    data class TopRatedMoviesError(val message: UiMessage) : PartialStateChanges
-
-    data class TopRatedMoviesLoaded(val content: List<MovieItem>) : PartialStateChanges
-
+    data class MoviesLoaded(
+        val category: MoviesCategory,
+        val content: List<MovieItem>
+    ) : PartState
 }
