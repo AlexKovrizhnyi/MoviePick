@@ -11,8 +11,8 @@ import androidx.navigation.fragment.navArgs
 import com.axkov.moviepick.core.ui.viewModel
 import com.axkov.moviepick.features.home.R
 import com.axkov.moviepick.features.home.databinding.FragmentCategoryBinding
-import com.axkov.moviepick.features.home.di.HomeComponent
-import com.axkov.moviepick.features.home.di.HomeComponentHolder
+import com.axkov.moviepick.features.home.di.HomeFeatureComponent
+import com.axkov.moviepick.features.home.di.HomeFeatureComponentHolder
 
 class CategoryFragment : Fragment(R.layout.fragment_category) {
 
@@ -20,7 +20,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
 
     private lateinit var binding: FragmentCategoryBinding
 
-    private lateinit var diComponent: HomeComponent
+    private lateinit var diComponent: HomeFeatureComponent
 
     private lateinit var viewModelFactory: CategoryViewModel.Factory
 
@@ -29,8 +29,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     private var moviePagingAdapter: MoviePagingAdapter? = null
 
     override fun onAttach(context: Context) {
-        diComponent = ViewModelProvider(activity as ViewModelStoreOwner)
-            .get<HomeComponentHolder>().homeComponent
+//        diComponent = ViewModelProvider(activity as ViewModelStoreOwner)
+//            .get<HomeComponentHolder>().homeComponent
+        diComponent = HomeFeatureComponentHolder.getComponent()
         viewModelFactory = diComponent.categoryViewModelFactory
 
         super.onAttach(context)

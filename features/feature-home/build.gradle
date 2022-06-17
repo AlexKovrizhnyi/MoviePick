@@ -43,9 +43,7 @@ android {
 
 dependencies {
     implementation project(':core')
-    implementation project(':core-domain')
-    implementation project(':moviedb-api')
-    implementation project(':data')
+    implementation project(':data-movies')
 
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
@@ -55,7 +53,8 @@ dependencies {
     implementation Libraries.pagingRxJava
     implementation Libraries.swipeRefreshLayout
 
-    implementation Libraries.roomRuntime
+    implementation Libraries.navigation
+    implementation Libraries.navigationUi
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler

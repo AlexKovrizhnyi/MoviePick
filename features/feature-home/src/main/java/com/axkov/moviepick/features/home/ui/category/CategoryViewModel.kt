@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
-import com.axkov.moviepick.core.domain.enums.MoviesCategory
-import com.axkov.moviepick.core.domain.models.Movie
-import com.axkov.moviepick.features.home.domain.repositories.MoviesPagingRepository
+import com.axkov.moviepick.core.enums.MoviesCategory
+import com.axkov.moviepick.core.models.Movie
+import com.axkov.moviepick.data.repositories.MoviesPagingRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -19,7 +19,7 @@ import timber.log.Timber
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class CategoryViewModel @AssistedInject constructor(
     @Assisted category: MoviesCategory,
-    private val repo: MoviesPagingRepository
+    private val repo: com.axkov.moviepick.data.repositories.MoviesPagingRepository
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()

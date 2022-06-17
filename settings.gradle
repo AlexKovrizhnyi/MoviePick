@@ -8,8 +8,7 @@ dependencyResolutionManagement {
 rootProject.name = "MoviePick"
 include ':app'
 include ':core'
-include ':core-domain'
-include ':moviedb-api'
-include ':data'
+include ':network-tmdb'
+include ':app-database'
 include ':features:feature-home'
-include ':core-domain'
+include ':data-movies'

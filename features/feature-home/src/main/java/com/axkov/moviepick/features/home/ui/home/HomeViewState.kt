@@ -1,6 +1,6 @@
 package com.axkov.moviepick.features.home.ui.home
 
-import com.axkov.moviepick.core.domain.enums.MoviesCategory
+import com.axkov.moviepick.core.enums.MoviesCategory
 import com.axkov.moviepick.core.ui.UiMessage
 import com.axkov.moviepick.features.home.ui.models.ListItem
 import com.axkov.moviepick.features.home.ui.models.MovieItem

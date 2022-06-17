@@ -35,7 +35,9 @@ android {
 
 dependencies {
     implementation project(':core')
-    implementation project(':moviedb-api')
+    implementation project(':network-tmdb')
+    implementation project(':app-database')
+    implementation project(':data-movies')
     implementation project(':features:feature-home')
 
     implementation Libraries.kotlinStdLib
@@ -43,9 +45,11 @@ dependencies {
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
 
+    implementation Libraries.navigation
+    implementation Libraries.navigationUi
+
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
-
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.extJunit

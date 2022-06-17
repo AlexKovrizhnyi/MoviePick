@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.axkov.moviepick.core.data.Data
-import com.axkov.moviepick.core.domain.enums.MoviesCategory
-import com.axkov.moviepick.core.domain.models.Movie
+import com.axkov.moviepick.core.enums.MoviesCategory
+import com.axkov.moviepick.core.models.Movie
 import com.axkov.moviepick.core.ui.UiMessage
 import com.axkov.moviepick.features.home.domain.observers.ObservePopularMovies
 import com.axkov.moviepick.features.home.domain.usecases.UpdatePopularMovies

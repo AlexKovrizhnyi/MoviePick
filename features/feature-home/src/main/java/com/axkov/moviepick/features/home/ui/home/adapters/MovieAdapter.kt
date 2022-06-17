@@ -58,7 +58,7 @@ internal class MovieAdapter :
 
             val resources = itemView.resources
             Glide.with(itemView)
-                .load("https://image.tmdb.org/t/p/w342${item.poster}")
+                .load(item.poster)
                 .transform(
                     CenterCrop(),
                     RoundedCorners(

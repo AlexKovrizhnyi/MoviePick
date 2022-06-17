@@ -38,26 +38,16 @@ android {
 }
 
 dependencies {
-    implementation project(':moviedb-api')
-
     implementation Libraries.coreKtx
     implementation Libraries.fragmentKtx
     implementation Libraries.liveData
     implementation Libraries.viewModel
-
-    api Libraries.navigation
-    api Libraries.navigationUi
 
     implementation Libraries.dagger
     kapt Libraries.daggerCompiler
 
     implementation Libraries.rxJava
     implementation Libraries.rxAndroid
-
-    api Libraries.retrofit
-    api Libraries.okHttpLoggingInterceptor
-    api Libraries.adapterRxJava
-    api Libraries.converterGson
 
     api Libraries.timber
 
